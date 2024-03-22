@@ -6,9 +6,7 @@ on:
       - main  # Change this to your default branch name if different
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   build:
