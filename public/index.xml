@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Srishti Gureja</title>
-    <link>http://localhost:50469/</link>
+    <link>https://srishti-git1110.github.io/</link>
     <description>Recent content on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:50469/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://srishti-git1110.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>blogs</title>
-      <link>http://localhost:50469/blogs/</link>
+      <link>https://srishti-git1110.github.io/blogs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:50469/blogs/</guid>
+      <guid>https://srishti-git1110.github.io/blogs/</guid>
       <description></description>
     </item>
     
