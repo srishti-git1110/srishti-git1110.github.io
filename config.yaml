@@ -135,7 +135,7 @@ menu:
       url: /projects/
       weight: 20
     - identifier: blog
-      name: blog
+      name: blogs
       url: /blogs/
       weight: 30
     # - identifier: categories
