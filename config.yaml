@@ -23,19 +23,19 @@ params:
   title: "Srishti Gureja"
   description: "ML Engineer and Researcher"
   keywords: [Blog, Portfolio, PaperMod]
-  author: "Me"
+  # author: "Me"
   # author: ["Me", "You"] # multiple authors
   # images: ["/icon.png"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
 
-  ShowReadingTime: true
+  ShowReadingTime: false
   ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
-  ShowWordCount: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
   disableSpecial1stPost: false
@@ -135,7 +135,7 @@ menu:
       url: /projects/
       weight: 20
     - identifier: blog
-      name: blogs
+      name: blog
       url: /blogs/
       weight: 30
     # - identifier: categories
