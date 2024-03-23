@@ -1,0 +1,5 @@
+---
+title: blogs
+aliases:
+    - "/blog"
+---
