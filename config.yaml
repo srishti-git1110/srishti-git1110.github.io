@@ -1,0 +1,163 @@
+baseURL: https://srishti-git1110.github.io/
+languageCode: en-us
+title: Srishti Gureja
+theme: ["PaperMod"]
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: "Srishti Gureja"
+  description: "ML Engineer and Researcher"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: "Me"
+  # author: ["Me", "You"] # multiple authors
+  # images: ["/icon.png"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+  enableLatex: true
+
+  label:
+    text: "Srishti Gureja"
+
+  # profile-mode
+  profileMode:
+    enabled: true # needs to be explicitly set
+    title: "Srishti Gureja"
+    subtitle: "ML Engineer and Researcher"
+    # imageUrl: "/img/aryaman.jpg"
+    # imageWidth: 120
+    # imageHeight: 120
+    # imageTitle: vibing
+    buttons:
+      - name: About
+        url: about
+      - name: Projects
+        url: projects
+      - name: Blog
+        url: blog
+      # - name: CV
+      #   url: pdf/resume.pdf
+    # news:
+    #   - desc: "We released the [paper](https://arxiv.org/abs/2403.07809) for [pyvene](https://github.com/stanfordnlp/pyvene), a new library for intervening on the internal states of neural networks!"
+    #     date: "2024-03-13"
+    #   - desc: "My first lead-author project as a Ph.D. student is out: [CausalGym: Benchmarking causal interpretability methods on linguistic tasks](https://arxiv.org/abs/2402.12560)."
+    #     date: "2024-02-19"
+    #   - desc: "Moved to the San Francisco Bay Area 🌉 to start my Ph.D. 🫡"
+    #     date: "2023-09-14"
+    #   - desc: "Back from the Leiden University Summer School in Languages and Linguistics in the Netherlands!"
+    #     date: "2023-07-31"
+    #   - desc: "Accepted to the Ph.D. program at [Stanford CS](https://cs.stanford.edu/)!"
+    #     date: "2023-02-08"
+
+  # home-info mode
+  homeInfoParams:
+    Title: "Hi there \U0001F44B"
+    Content: Welcome to my blog
+
+  socialIcons:
+    - name: email
+      url: "mailto:srishtigureja1110@gmail.com"
+    - name: googlescholar
+      url: "https://scholar.google.com/citations?user=CII6eOgAAAAJ&hl=en"
+    - name: twitter
+      url: "https://twitter.com/sGx_tweets"
+    - name: github
+      url: "https://github.com/srishti-git1110"
+
+  analytics:
+    # google:
+    #   SiteVerificationTag: "G-W6HV8VE5SV"
+    # bing:
+    #   SiteVerificationTag: "XYZabc"
+    # yandex:
+    #   SiteVerificationTag: "XYZabc"
+
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  editPost:
+    # URL: "https://github.com/<path_to_repo>/content"
+    # Text: "Suggest Changes" # edit text
+    # appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: about
+      name: about
+      url: /about/
+      weight: 10
+    - identifier: projects
+      name: projects
+      url: /projects/
+      weight: 20
+    - identifier: blog
+      name: blog
+      url: /blogs/
+      weight: 30
+    # - identifier: categories
+    #   name: categories
+    #   url: /categories/
+    #   weight: 40
+    - identifier: search
+      name: search
+      url: /search/
+      weight: 40
+    # - identifier: example
+    #   name: example.org
+    #   url: https://example.org
+    #   weight: 30
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+markup:
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
+
