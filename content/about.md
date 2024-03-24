@@ -2,7 +2,7 @@
 title: About
 draft: false
 ---
-
+Hi there! My name is Srishti.
 I am a Machine Learning Engineer and Researcher broadly interested in two research areas:
 - Alignment of Language Models (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work for this purpose?)
 - Techniques for efficient training of and inference from Language Models (Towards this, I am learning GPU Programming and design these days)
