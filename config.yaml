@@ -136,7 +136,7 @@ menu:
       weight: 20
     - identifier: blog
       name: blog
-      url: /blogs/
+      url: /blog/
       weight: 30
     # - identifier: categories
     #   name: categories

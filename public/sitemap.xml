@@ -2,28 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:53395/blog/</loc>
-    <lastmod>2024-03-24T21:49:47+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:53395/blog/pytorch/</loc>
-    <lastmod>2024-03-24T21:49:47+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:53395/</loc>
-    <lastmod>2024-03-24T21:49:47+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:53395/tags/nlp-pytorch/</loc>
+    <loc>http://localhost:53458/blog/</loc>
     <lastmod>2023-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53395/blog/2023-01-05-pytorch-ds-dl/</loc>
+    <loc>http://localhost:53458/tags/nlp-pytorch/</loc>
     <lastmod>2023-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53395/tags/</loc>
+    <loc>http://localhost:53458/blog/2023-01-05-pytorch-ds-dl/</loc>
     <lastmod>2023-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53395/about/</loc>
+    <loc>http://localhost:53458/</loc>
+    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53395/categories/</loc>
+    <loc>http://localhost:53458/tags/</loc>
+    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53395/search/</loc>
+    <loc>http://localhost:53458/about/</loc>
+  </url><url>
+    <loc>http://localhost:53458/categories/</loc>
+  </url><url>
+    <loc>http://localhost:53458/search/</loc>
   </url>
 </urlset>
