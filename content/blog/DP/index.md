@@ -1,7 +1,7 @@
 ---
 title: An Introduction to Differential Privacy
 layout: post
-date: 2022-08-05
+date: 2024-03-27
 tags:
     - Differential Privacy, PyTorch, Privacy Preserving ML
 description: "A detailed mathematical and intuitive introduction to differential privacy."
