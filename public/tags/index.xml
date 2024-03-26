@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Srishti Gureja</title>
-    <link>http://localhost:53600/tags/</link>
+    <link>http://localhost:49620/tags/</link>
     <description>Recent content in Tags on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Jan 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:53600/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:49620/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Differential Privacy, PyTorch, Privacy Preserving ML</title>
+      <link>http://localhost:49620/tags/differential-privacy-pytorch-privacy-preserving-ml/</link>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:49620/tags/differential-privacy-pytorch-privacy-preserving-ml/</guid>
+      <description></description>
+    </item>
     <item>
       <title>NLP, PyTorch</title>
-      <link>http://localhost:53600/tags/nlp-pytorch/</link>
-      <pubDate>Thu, 05 Jan 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:53600/tags/nlp-pytorch/</guid>
+      <link>http://localhost:49620/tags/nlp-pytorch/</link>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:49620/tags/nlp-pytorch/</guid>
       <description></description>
     </item>
   </channel>

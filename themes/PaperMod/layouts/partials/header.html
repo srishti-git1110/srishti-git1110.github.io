@@ -2,6 +2,8 @@
 {{- if (not site.Params.disableThemeToggle) }}
 {{- /* theme is light */}}
 {{- if (eq site.Params.defaultTheme "light") }}
+{{ if .Params.mathjax }}{{ partial "mathjax_support.html" . }}{{ end }}
+
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');

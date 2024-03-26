@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:53600/blog/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:49620/blog/dp/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/tags/nlp-pytorch/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:49620/blog/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/blog/2023-01-05-pytorch-ds-dl/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:49620/tags/differential-privacy-pytorch-privacy-preserving-ml/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:49620/tags/nlp-pytorch/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/tags/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:49620/blog/2023-01-05-pytorch-ds-dl/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/about/</loc>
+    <loc>http://localhost:49620/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/categories/</loc>
+    <loc>http://localhost:49620/tags/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:53600/search/</loc>
+    <loc>http://localhost:49620/about/</loc>
+  </url><url>
+    <loc>http://localhost:49620/categories/</loc>
+  </url><url>
+    <loc>http://localhost:49620/search/</loc>
   </url>
 </urlset>

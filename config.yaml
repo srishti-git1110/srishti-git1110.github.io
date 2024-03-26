@@ -160,4 +160,5 @@ markup:
     # guessSyntax: true
     # lineNos: true
     # style: monokai
+markdown: kramdown
 
