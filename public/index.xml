@@ -2,26 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Srishti Gureja</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:52303/</link>
     <description>Recent content on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Aug 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:52303/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>PyTorch Datasets and Dataloaders</title>
-      <link>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</link>
-      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</guid>
-      <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
+      <title>An Introduction to Differential Privacy</title>
+      <link>http://localhost:52303/blog/dp/</link>
+      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:52303/blog/dp/</guid>
+      <description>A detailed mathematical and intuitive introduction to differential privacy.</description>
     </item>
     <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>Hi there! My name is Srishti. I am a Machine Learning Engineer and Researcher broadly interested in two research areas:
-Alignment of Language Models (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work for this purpose?) Techniques for efficient training of and inference from Language Models (Towards this, I am learning GPU Programming and design these days) Work Currently, I am working as an ML Engineer at an Indian startup where I work on many things ML + software engineering including fine-tuning language models for focussed use cases, building evaluation and training pipelines etc.</description>
+      <title>PyTorch Datasets and Dataloaders</title>
+      <link>http://localhost:52303/blog/2023-01-05-pytorch-ds-dl/</link>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:52303/blog/2023-01-05-pytorch-ds-dl/</guid>
+      <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
   </channel>
 </rss>
