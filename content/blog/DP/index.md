@@ -1,7 +1,7 @@
 ---
 title: An Introduction to Differential Privacy
 layout: post
-date: 2024-03-27
+date: 2024-03-25
 tags:
     - Differential Privacy, PyTorch, Privacy Preserving ML
 description: "A detailed mathematical and intuitive introduction to differential privacy."
@@ -153,4 +153,3 @@ $$ \frac{\mathbb{P}\left[M(D_1)=O\right]}{\mathbb{P}\left[M(D_2)=O\right]} = \fr
 
 
 This clearly shows that using the noise that we used, our mechanism \\( M \\) is ε-differentially private. Cheers! If you were able to follow this far, you've already designed your first own ε-differentially private algorithm. :)
-
