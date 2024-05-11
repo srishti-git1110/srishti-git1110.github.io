@@ -6,12 +6,12 @@
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://srishti-git1110.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An Introduction to Differential Privacy</title>
       <link>https://srishti-git1110.github.io/blog/dp/</link>
-      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://srishti-git1110.github.io/blog/dp/</guid>
       <description>A detailed mathematical and intuitive introduction to differential privacy.</description>
     </item>
