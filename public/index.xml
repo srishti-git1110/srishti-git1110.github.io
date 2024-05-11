@@ -22,5 +22,13 @@
       <guid>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</guid>
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Hi there! My name is Srishti. I am a Machine Learning Engineer and Researcher broadly interested in two research areas:
+Alignment of Language Models (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work specifically for this purpose?) Techniques for efficient training of and inference from Language Models (Towards this interest, I am also learning GPU Programming these days) Work I am fortunate to be working with Alex Havrilla on LLM Alignment.</description>
+    </item>
   </channel>
 </rss>
