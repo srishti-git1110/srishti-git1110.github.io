@@ -66,19 +66,6 @@ params:
         url: projects
       - name: Blog
         url: blog
-      # - name: CV
-      #   url: pdf/resume.pdf
-    # news:
-    #   - desc: "We released the [paper](https://arxiv.org/abs/2403.07809) for [pyvene](https://github.com/stanfordnlp/pyvene), a new library for intervening on the internal states of neural networks!"
-    #     date: "2024-03-13"
-    #   - desc: "My first lead-author project as a Ph.D. student is out: [CausalGym: Benchmarking causal interpretability methods on linguistic tasks](https://arxiv.org/abs/2402.12560)."
-    #     date: "2024-02-19"
-    #   - desc: "Moved to the San Francisco Bay Area 🌉 to start my Ph.D. 🫡"
-    #     date: "2023-09-14"
-    #   - desc: "Back from the Leiden University Summer School in Languages and Linguistics in the Netherlands!"
-    #     date: "2023-07-31"
-    #   - desc: "Accepted to the Ph.D. program at [Stanford CS](https://cs.stanford.edu/)!"
-    #     date: "2023-02-08"
 
   # home-info mode
   homeInfoParams:

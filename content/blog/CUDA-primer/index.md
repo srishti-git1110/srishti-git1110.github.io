@@ -1,5 +1,5 @@
 ---
-title: Learning CUDA Programming: A Primer
+title: "Learning CUDA Programming: A Primer"
 layout: post
 date: 2024-03-31
 tags:
