@@ -14,7 +14,7 @@ In this not-so-structured post, I am going to talk about the Switch Transformer 
 
 To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass. 
 
-[fully activayed dense model](ffnn.drawio (1).png)
+![fully activated dense model](ffnn.png#center)
 
 Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters => more computation performed by a single token.
 And tangential to this, work by Kaplan et al. (2020) becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.
@@ -22,7 +22,7 @@ And tangential to this, work by Kaplan et al. (2020) becomes super relevant as t
 So, the point is that while increasing the number of model parameters yields performance, it comes at the cost of increased total computation per token (FLOPS per token).
 
 Such is not the case with Routed Models. Let's first look at what a routed layer looks like.
-[Routed models](Screenshot 2024-06-23 at 2.53.19 AM.png)
+![Routed models](switch.png)
 
 The single feed forward layer is replaced by several FF layers each of which is called an expert. Each token is routed to only one of the experts during the forward pass. The Router is yet another FFNN used to obtain pi(x): the probability that token x is routed to expert i.
 
@@ -86,9 +86,13 @@ Note that increasing the number of experts does not increase the FLOPs per token
 1. More experts = Better test loss
 The plot below clearly shows that as the number of experts increase the test loss decreases. Ofcourse, everything else (#tokens, #training steps etc.) must be kept constant.
 
+![sl1](sl1.png)
+
 2. More experts = Fast training
 Firstly, fast here does not mean more examples processed per second.
 Fast implies what can be clearly seen in the plot below: Having more experts achieves the same level of negative log perplexity faster than a model with lesser experts -- faster in terms of the number of training steps performed.
+
+![sl2](sl2.png)
 
 Additionally, the authors also find for a fixed number of tokens seen, larger models learn faster.
 
@@ -103,10 +107,16 @@ So the next obvious question is: Given a fixed amount of wall clock time (and of
 3. Fixed training time
 The plot below answers the question posed just above - For a fixed training duration, Switch transformer outperforms the dense model. Same story for the number of experts as they grow, but here the difference isn't as significant and the intuition is pretty easy to reach at if the past few paras were clear enough.
 
+![sl3](sl3.png)
+
+
 4. Moving forward to *FLOPs un-matched*
 If we go back to the motivation behind using a MoE or a sparse routed model like the Switch Transformer, it's simply stated as: MoEs allow us to increase the parameter count while keeping the computational budget constant.
 
 While the benefit of training an MoE/Switch model over its FLOPs matched baseline is clear by now, how does a Switch model compare with a more-FLOPs-demanding dense baseline? The plot below shows that Switch-Base (124B FLOPs/seq) is still more sample efficient than dense T5-Large (425B FLOPs/seq). This is cool!
+
+![sl4](sl4.png)
+
 
 ## Let's "infer" the tradeoff!
 Now, let's "infer" a tradeoff from whatever we've studied till now. I am using those quotes because the tradeoff is regarding the Inference stage. :-)

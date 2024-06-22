@@ -117,9 +117,9 @@ menu:
       name: about
       url: /about/
       weight: 10
-    - identifier: projects
-      name: projects
-      url: /projects/
+    - identifier: code
+      name: code
+      url: /code/
       weight: 20
     - identifier: blog
       name: blog
