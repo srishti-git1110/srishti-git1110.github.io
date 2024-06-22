@@ -62,8 +62,8 @@ params:
     buttons:
       - name: About
         url: about
-      - name: Projects
-        url: projects
+      - name: Code
+        url: code
       - name: Blog
         url: blog
 

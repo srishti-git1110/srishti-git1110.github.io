@@ -3,16 +3,16 @@ title: About
 draft: false
 ---
 Hi there! My name is Srishti.
-I am a Machine Learning Engineer and Researcher broadly interested in two research areas:
+I am a Machine Learning Engineer and Researcher, and I care the most about the following areas of study:
 - Alignment of Language Models (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work **specifically** for this purpose?)
-- Techniques for efficient training of and inference from Language Models (Towards this interest, I am also learning GPU Programming these days)
+- Techniques for efficient training of and inference from Language Models (Here, I am particularly interested in writing software that makes the most efficient use of the hardware at hand.)
 
 ## Work
 - I am fortunate to be working with [Alex Havrilla](https://dahoas.github.io/) on LLM Alignment.
 
 - My full time job is as an ML Engineer at an Indian startup where I work on many things ML + software engineering including fine-tuning language models for focussed use cases, building evaluation and training pipelines etc.
 
-- I am also working with [Eleuther AI](https://www.eleuther.ai/) towards a project aimed at understanding Conditional Pre-training of LMs at scale as a way to achieve better alignment. The rationale here is that rather than first learning and then unlearning unwanted behaviour via techniques like RLHF, how much it benefits at scale to learn aligned behaviour right from the pre-training stage.
+- I am also working with [Eleuther AI](https://www.eleuther.ai/) towards a project aimed at understanding Conditional Pre-training of LMs at scale as a way to achieve better alignment. The goal here is to study at scale the benefits of learning aligned behaviour right from the pre-training stage rather than first learning and then unlearning unwanted behaviour via techniques like RLHF.
 
 - In the past, I have worked at [Translated](https://translated.com/welcome) where I had a lot of fun working on the intersection of LLMs, DP, FL, PEFT for the [EU Data Tools for Heart Project](https://www.datatools4heart.eu/).
 
