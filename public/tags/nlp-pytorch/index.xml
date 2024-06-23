@@ -13,7 +13,9 @@
       <link>http://localhost:1313/blog/moes/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/moes/</guid>
-      <description>Let&amp;#39;s talk about a (not new) class of models - Mixture of Experts!</description>
+      <description>In this short post, I am going to talk about the Switch Transformer paper.
+Background and Architecture To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.
+Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token. And tangential to this, work by Kaplan et al.</description>
     </item>
     <item>
       <title>PyTorch Datasets and Dataloaders</title>
