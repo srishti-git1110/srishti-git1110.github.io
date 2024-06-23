@@ -4,11 +4,11 @@ layout: post
 date: 2024-06-17
 tags:
     - NLP, PyTorch
-description: Let's talk about a (not new) class of models - Mixture of Experts!
+description:
 draft: false
 ---
 
-In this not-so-structured post, I am going to talk about the Switch Transformer paper.
+In this short post, I am going to talk about the Switch Transformer paper.
 
 ## Background and Architecture
 
@@ -17,58 +17,124 @@ To begin: In Dense Models, each parameter/neuron of the network gets activated d
 ![fully activated dense model](ffnn.png#center)
 
 Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters => more computation performed by a single token.
-And tangential to this, work by Kaplan et al. (2020) becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.
+And tangential to this, work by [Kaplan et al. (2020)](https://arxiv.org/abs/2001.08361) becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.
 
-So, the point is that while increasing the number of model parameters yields performance, it comes at the cost of increased total computation per token (FLOPS per token).
+So, the point is that while increasing the number of model parameters yields performance, it comes at the cost of increased total computation/FLOPs per token (There's nuance to the former part of this statement but it communicates the gist).
 
-Such is not the case with Routed Models. Let's first look at what a routed layer looks like.
+Such is not the case with Routed Models as we'll see. Let's first look at what a "Routed Layer" looks like.
 ![Routed models](switch.png)
 
-The single feed forward layer is replaced by several FF layers each of which is called an expert. Each token is routed to only one of the experts during the forward pass. The Router is yet another FFNN used to obtain pi(x): the probability that token x is routed to expert i.
+The above figure might seem intimidating but we'll understand all of it.
+The single feed forward layer is replaced by several *different* FF layers (FF1 through FF4 in the figure) each of which is called an *Expert*. Each token is routed to only one of the experts during a single forward pass. The Router (in green) is yet another FFNN that decides which expert should each token be routed to. And to make it clear, the same router is used for all tokens.
 
-Talk of probability in FFNNs and you have softmax; hence...
-// math
+### Let's look at some math
+Consider,
+- \\( \mathcal{B} \\): the current batch 
+- \\( T \\): number of tokens in the current batch
+- \\( N \\): the number of experts in the current routed layer
+- \\( E_i \\): the expert \\( i \\)
+- \\( p_i(x) \\): the probability that the token \\( x \\) is routed to \\( E_i \\)
 
-So we went from a Feed forward layer to what the paper calls a "Switch layer".
+The Router, as discussed, is a FFNN that takes \\( x \\) as an input and first produces logits given by:
+$$ h(x) = W_r . x $$
+
+where,
+
+\\( W_r \\): The router weights 
+
+Talk of probability in FFNNs and you have softmax; hence the router probability for a particular expert \\( E_i \\) is calculated by normalizing the logits as:
+
+$$ p_i(x) = \frac{e^{h(x)&lowbar;i}}{\sum&lowbar;{j=1}&Hat;{N} e^{h(x)&lowbar;j}} $$
+
+From here, as can be seen in the figure above, the Switch paper routes \\( x \\) to the expert with the highest \\( p_i(x) \\).
+
+And thereupon the output corresponding to token \\( x \\) is calculated as:
+
+$$ y = p_i(x)E_i(x); i \in {1, 2, ..., N} $$
+
+This is what the dotted line in the figure shows.
+
+To revise: we went from a layer with a single feed forward network to what the paper calls a "Switch layer".
 
 ## What happened here?
-The architectural change was straight forward to understand: you replace the single FF layer with a bunch of FF layers and one token uses only one at a time. What this means is that while the total parameters in the layer increase this way by N times, the total computation performed by each token remained constant.
+The architectural change was straight forward to understand: you replace the single FF network with a bunch of different FF networks, of which one token uses only one at a time. What this means is that while the total parameters in the layer increase this way by \\( N \\) times, the total computation performed by each token remained constant.
 
 And so here we go: We are able to scale on the number-of-parameters axis while keeping the FLOPs per token constant. All of this by virtue of the routing mechanism that introduces "sparsity" in the model -- not all parameters of the model are activated during a token's forward pass.
 
 ## Revising the Switch Layer: MoE vs Switch Transformer
-As we saw above, one token is routed to only one expert at a time. 
+As we saw above, one token is routed to only one expert at a time in the Switch Transformer paper. 
 
-The paper OLNN (Shazeer et al. 2017) does this differently. Instead of routing a token to only one expert, they select the top-k experts for a token, in which case the output of the MoE layer (they call it that) for that token becomes:
+The Outrageously Large Neural Networks paper (Shazeer et al. 2017) does this differently. Instead of routing a token to only one expert, they select the top-k experts for a token, in which case the output of the MoE layer (they call it that) for that token becomes:
 
-// equation
+$$ y = \sum&lowbar;{i \in \mathcal{T}} p_i(x)E_i(x) $$
+
+where, 
+
+\\( \mathcal{T} \\): set of top-k Experts
 
 ### Why top-k?
-I read the OLNN paper carefully but did not see any elaborate mentions of why k>1 experts are required. But what the paper nicely elaborates on is "load-balancing". We'll circle back to load-balancing in context of the Switch paper but the term essentially means to ensure that all experts are sufficiently utilized and hence trained during the training process. In other words, the router shouldn't always favour a certain (set of) expert(s).
+I read the OLNN paper carefully but did not see any elaborate mentions of why \\( k>1 \\) experts are required. But what the paper nicely elaborates on is "load-balancing". We'll circle back to load-balancing in context of the Switch paper but the term essentially means to ensure that all experts are sufficiently utilized and hence trained during the training process. In other words, the router shouldn't always favour a certain (set of) expert(s).
 
-And from here, one can intuition about why the authors chose k>1 (precisely they use k=4) -- to make sure that not just one but more than one expert is involved during any single backprop for the router to be able learn the routing process without favouring a single (set of) expert(s).
+And from here, one can intuition about why the authors chose \\( k>1 \\) (precisely they use \\( k=4 \\)) -- to make sure that not just one but more than one expert is involved during any single backprop for the router to be able learn the routing process without favouring a single (set of) expert(s).
 
-BTW, the OLNN paper does a lot more cool stuff for load-balancing.  In fact, OLNN clearly states that 
 
-That said, if k>1 is one aspect of load-balancing along with playing a part in making sure all experts are sufficiently trained, how were the Switch authors able to do well without it?
+That said, if \\( k>1 \\) is one aspect of load-balancing along with playing a part in making sure all experts are sufficiently trained, how were the Switch authors able to do well without it?
 
 ## Auxiliary loss
 This section is the answer to that.
-The aux loss is just a term that's added to the total model loss. The purpose of it is to penalize the router for favouring a certain expert too much, i.e. for giving too large a probability to any one expert. Hence, this loss encourages a "uniform routing". The word "uniform" here is more than an english word; it's used in the statistical sense of the Uniform Distribution and we'll see how.
+The aux loss is just a term that's added to the total model loss. The purpose of it is to penalize the router for favouring a certain expert too much, i.e. for giving too large a probability to any one expert. Hence, this loss encourages a "uniform routing". The word "uniform" here is more than an english word; it's used in the statistical sense of the Uniform Distribution and logically so. Because what we want is for the tokens to be distributed uniformly among the experts.
 
-Let's see the math once:
+And we will see how exactly does this loss encourages a Uniform Distribution. But let's see the math once.
 
-Now, under Uniform routing,
+Keeping the previous notations same, consider:
+- \\( f_i \\): the fraction of tokens routed to \\( E_i \\)
 
-And obviously, there's more than a single switch layer in the full architecture, and we want each one of it to route uniformly. So, aux losses corresponding to each switch layer are calculated and added to the language model training loss.
+Hence,
 
-### Benefits of k=1 (The Switch Layer)
-Choosing k=1 over k>1 results in some obvious benefits:
+\\( f_i \\) = Number of tokens from \\( \mathcal{B} \\) router to \\( E_i \\) / Total tokens in \\( \mathcal{B} \\)
+
+$$ f_i = \frac{1}{T} \sum_{x \in \mathcal{B}} \mathbb{1} \\{argmax \ p(x) = i \\} $$
+
+- \\( P_i \\): fraction of the router probability assigned to \\( E_i \\) across all tokens in \\( \mathcal{B} \\)
+
+Hence,
+
+\\( P_i \\) = Sum of \\( p_i(x) \\) across \\( \mathcal{B} \\) / Total router probability across \\( \mathcal{B} \\)
+
+$$ P_i = \frac{1}{T} \sum_{x \in \mathcal{B}} p_i(x) $$
+
+The aux loss is now given by:
+
+$$ loss = \alpha . N . \sum&lowbar;{i=1}&Hat;{N} f_i . P_i $$
+
+where,
+
+\\( \alpha \\): coefficient to control the effect of aux losses
+It needs to be large enough for the aux losses to have a sufficient load-balancing effect, and small enough to not overwhelm the primary modelling loss.
+
+Now, under Uniform routing (which is what we want), each expert should get \\( \frac{T}{N} \\) tokens routed to it. And for every particular \\( x \\), \\( p_i(x) \\) should be \\( \frac{1}{N} \\) for each value of \\( i \\) i.e. for each expert.
+
+Hence, under uniform routing:
+
+$$ f_i = \frac{1}{T} x \frac{T}{N} = \frac{1}{N} $$
+$$ P_i = \frac{1}{T} x \sum&lowbar;{x \in \mathcal{B}} \frac{1}{N} = \frac{1}{T} x \frac{T}{N} = \frac{1}{N} $$
+
+And these are the exact values at which the aux loss as described above is minimized, and hence it encourages uniform routing! 
+
+[Notice the term \\( N \\) multiplied in the aux loss equation? Plug in these uniform values and try to reason why it's necessary.]
+
+
+Obviously, there's more than a single switch layer in the full architecture, and we want each one of it to route uniformly. So, aux losses corresponding to each switch layer are calculated and added to the language model training loss.
+
+### Benefits of \\( k=1 \\) (The Switch Layer)
+Choosing \\( k=1 \\) over \\( k>1 \\) results in some obvious benefits:
 1. Less computation needs to be performed per token.
 2. Cross device communication is reduced owing to the needlessness to perform an addition operation to be able to get the token output.
 
 ## Efficient routing: Expert Capacity
 The Expert Capacity of each expert which is basically the max batch size allocated to each expert. It goes:
+
+$$ \text{expert capacity} = \left( \frac{\text{tokens per batch}}{\text{number of experts}} \right) \times \text{capacity factor} $$
 
 As is clear, the capacity factor is introduced in the above equation to create an additional buffer for cases when there's an unequal allocation of tokens among the experts by the router. If the router allocated count exceeds the Expert Capacity, the extra tokens are just dropped from the expert computation (and make their way to the next layer via the residual connection).
 
@@ -130,5 +196,3 @@ Hence, it's a memory vs performance tradeoff.
 [1] [Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity](https://arxiv.org/pdf/2101.03961)
 
 [2] [Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer](https://arxiv.org/abs/1701.06538)
-
-

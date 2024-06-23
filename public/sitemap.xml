@@ -3,10 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nlp-pytorch/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/moes/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/dp/</loc>
     <lastmod>2024-03-25T00:00:00+00:00</lastmod>
@@ -14,14 +23,10 @@
     <loc>http://localhost:1313/tags/differential-privacy-pytorch-privacy-preserving-ml/</loc>
     <lastmod>2024-03-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-03-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/nlp-pytorch/</loc>
-    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</loc>
     <lastmod>2022-08-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/code/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url><url>
