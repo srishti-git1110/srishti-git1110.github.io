@@ -32,13 +32,14 @@ Hence, to be able to derive more performance by means of increasing the model si
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
     <item>
-      <title></title>
+      <title>Papers</title>
       <link>https://srishti-git1110.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://srishti-git1110.github.io/code/</guid>
       <description>Visit my github for more. Following are some selected samples.
-Paper Implementations Switch Transformers
-Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity.</description>
+Paper Implementations Switch Transformers.
+Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity..
+. </description>
     </item>
   </channel>
 </rss>
