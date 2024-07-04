@@ -26,11 +26,11 @@
     <loc>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</loc>
     <lastmod>2022-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/code/</loc>
-  </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/code/</loc>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>

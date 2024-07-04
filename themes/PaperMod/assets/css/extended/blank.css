@@ -3,3 +3,8 @@ This is just a placeholder blank stylesheet so as to support adding custom style
 
 Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
 */
+.pub-icon svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
