@@ -116,8 +116,8 @@ Now, under Uniform routing (which is what we want), each expert should get \\( \
 
 Hence, under uniform routing:
 
-$$ f_i = \frac{1}{T} x \frac{T}{N} = \frac{1}{N} $$
-$$ P_i = \frac{1}{T} x \sum&lowbar;{x \in \mathcal{B}} \frac{1}{N} = \frac{1}{T} x \frac{T}{N} = \frac{1}{N} $$
+$$ f_i = \frac{1}{T} . \frac{T}{N} = \frac{1}{N} $$
+$$ P_i = \frac{1}{T} . \sum&lowbar;{x \in \mathcal{B}} \frac{1}{N} = \frac{1}{T} . \frac{T}{N} = \frac{1}{N} $$
 
 And these are the exact values at which the aux loss as described above is minimized, and hence it encourages uniform routing! 
 

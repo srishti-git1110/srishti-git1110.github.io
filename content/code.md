@@ -2,6 +2,7 @@
 title: Papers
 aliases:
     - "/code"
+math: true
 ---
 
 Visit my [github](https://github.com/srishti-git1110) for more. Following are some selected samples.
