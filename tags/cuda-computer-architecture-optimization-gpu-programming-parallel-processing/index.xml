@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CUDA, Computer Architecture, Optimization, GPU Programming, Parallel Processing on Srishti Gureja</title>
+    <link>https://srishti-git1110.github.io/tags/cuda-computer-architecture-optimization-gpu-programming-parallel-processing/</link>
+    <description>Recent content in CUDA, Computer Architecture, Optimization, GPU Programming, Parallel Processing on Srishti Gureja</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://srishti-git1110.github.io/tags/cuda-computer-architecture-optimization-gpu-programming-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[WIP] Learning CUDA Programming: A Primer</title>
+      <link>https://srishti-git1110.github.io/blog/cuda-primer/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://srishti-git1110.github.io/blog/cuda-primer/</guid>
+      <description>A friendly primer to learning CUDA programming</description>
+    </item>
+  </channel>
+</rss>
