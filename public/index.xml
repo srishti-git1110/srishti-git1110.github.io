@@ -18,6 +18,13 @@ Background and Architecture To begin: In Dense Models, each parameter/neuron of 
 Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token. And tangential to this, work by Kaplan et al.</description>
     </item>
     <item>
+      <title>[WIP] Learning CUDA Programming: A Primer</title>
+      <link>http://localhost:1313/blog/cuda-primer/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/cuda-primer/</guid>
+      <description>A friendly primer to learning CUDA programming</description>
+    </item>
+    <item>
       <title>An Introduction to Differential Privacy</title>
       <link>http://localhost:1313/blog/dp/</link>
       <pubDate>Mon, 25 Mar 2024 00:00:00 +0000</pubDate>

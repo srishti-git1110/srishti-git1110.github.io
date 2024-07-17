@@ -17,6 +17,12 @@
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/blog/cuda-primer/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cuda-computer-architecture-optimization-gpu-programming-parallel-processing/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/blog/dp/</loc>
     <lastmod>2024-03-25T00:00:00+00:00</lastmod>
   </url><url>
