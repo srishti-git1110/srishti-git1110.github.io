@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LLMs, Compute, FLOP, Training Data, Fine-Tuning, Inverse Scaling Laws on Srishti Gureja</title>
+    <link>https://srishti-git1110.github.io/tags/llms-compute-flop-training-data-fine-tuning-inverse-scaling-laws/</link>
+    <description>Recent content in LLMs, Compute, FLOP, Training Data, Fine-Tuning, Inverse Scaling Laws on Srishti Gureja</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://srishti-git1110.github.io/tags/llms-compute-flop-training-data-fine-tuning-inverse-scaling-laws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Coming Soon] Scaling Laws: What We Know So Far</title>
+      <link>https://srishti-git1110.github.io/blog/sclaing-laws/</link>
+      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://srishti-git1110.github.io/blog/sclaing-laws/</guid>
+      <description>On what we know so far about Scaling Laws in LLMs.</description>
+    </item>
+  </channel>
+</rss>
