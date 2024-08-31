@@ -1,7 +1,9 @@
 <div style="margin-bottom: 1em;">
     <a href="{{ .Get "url" }}">{{ .Get "title" | markdownify }}</a>.<br>
     <div style="line-height: 1.4; font-size: smaller; color: var(--secondary);">
+    {{ if .Get "authors" }}
     <span>{{ .Get "authors" | markdownify }}</span>.<br>
+    {{ end }}
     <span><em>{{ .Get "venue" | markdownify }}</em>{{ if .Get "location" }}, {{ .Get "location" }}{{ end }}.</span>
     {{ if .Get "github" }}
     <span class="resource pub-icon"><a href="{{ .Get "github" | safeURL }}">{{ partial "svg.html" (dict "name" "github")}}</a></span>
@@ -12,5 +14,11 @@
     {{ if .Get "link" }}
     <span class="resource pub-icon"><a href="{{ .Get "link" | safeURL }}">{{ partial "svg.html" (dict "name" "link")}}</a></span>
     {{ end }}
+    {{ if .Get "talk" }}
+    <span class="resource pub-icon"><a href="{{ .Get "talk" | safeURL }}">Talk</a></span>
+    {{ end }}
+    {{ if .Get "slides" }}
+    <span class="resource pub-icon"><a href="{{ .Get "slides" | safeURL }}">Slides</a></span>
+    {{ end }}
     </div>
-    </div>
+</div>

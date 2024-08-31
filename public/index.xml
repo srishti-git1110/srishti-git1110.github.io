@@ -55,5 +55,17 @@ Paper Implementations Switch Transformers.
 Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity..
 . </description>
     </item>
+    <item>
+      <title>Talks</title>
+      <link>http://localhost:1313/talks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/talks/</guid>
+      <description>Below are some of the talks that I&amp;rsquo;ve delivered on Cohere&amp;rsquo;s Discord.
+ML Efficiency GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection.
+. Talk Slides SpQR: A Sparse-Quantized Representation for Near-lossless LLM Weight Compression.
+. Talk Slides LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale.
+. Talk Slides NLP GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints.
+. Talk Slides Universal and Transferable Adversarial Attacks on Aligned Language Models.</description>
+    </item>
   </channel>
 </rss>

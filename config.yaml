@@ -66,6 +66,8 @@ params:
         url: code
       - name: Blog
         url: blog
+      - name: Talks
+        url: talks
 
   # home-info mode
   homeInfoParams:
@@ -129,10 +131,14 @@ menu:
     #   name: categories
     #   url: /categories/
     #   weight: 40
+    - identifier: talks
+      name: talks
+      url: /talks/
+      weight: 40
     - identifier: search
       name: search
       url: /search/
-      weight: 40
+      weight: 50
     # - identifier: example
     #   name: example.org
     #   url: https://example.org
