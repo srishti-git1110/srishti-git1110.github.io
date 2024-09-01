@@ -4,19 +4,19 @@ draft: false
 ---
 Hi there! My name is Srishti.
 I am a Machine Learning Engineer and Researcher, and I care the most about the following areas of study:
-- Alignment of Language Models (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work **specifically** for this purpose?)
-- Techniques for efficient training of and inference from Language Models (Here, I am particularly interested in writing software that makes the most efficient use of the hardware at hand.)
+- Alignment (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work **specifically** for this purpose?)
+- Techniques for efficient training of and inference from Language Models (Here, I am particularly interested in writing software that makes the most efficient use of the accelerators, and techniques that can help reduce the compute and memory requirements without drastically affecting the quality.)
 
-These days I am focussing a lot on practicing DS & Algos on Leetcode and studying how Operating systems work. The latter is [so fun](https://github.com/srishti-git1110/Operating-Systems)!
+These days I am also focussing on practicing DS & Algos on Leetcode and studying how Operating systems work. The latter is [so fun](https://github.com/srishti-git1110/Operating-Systems)!
 
-## Work
+## Latest
 - Started working with [Aran Komatsuzaki](https://scholar.google.com/citations?user=zzksRXYAAAAJ&hl=en) towards building a high quality training+eval dataset for PRMs (Process Reward Models).
 
 - I am fortunate to be working with [Alex Havrilla](https://dahoas.github.io/) towards an attempt to train via RL a potentially new SOTA Math LLM. :)
 
-- I am leading a group at [Cohere for AI, Expedition Aya](https://sites.google.com/cohere.com/expedition-aya/home) where we are conducting experiments aimed at better understanding of some open source Reward Models and of some proprietary LLMs-as-Judges in a multilingual setting as far as their ability to align with human preferences is concerned.
+- I am leading a team as part of [Cohere for AI's Expedition Aya](https://sites.google.com/cohere.com/expedition-aya/home) where we are working on benchmarking the abilities of open source Reward Models and of proprietary LLMs-as-Judges in a multilingual setting. Our team also won the second prize at the closing ceremony!
 
-- My full time job is as an ML Engineer at an Indian startup where I work on many things ML + software engineering. An average day involves building and/or debugging backend ML pipelines from scratch. Sometimes I also build new features for existing products.
+- My full time job is as an ML Engineer at an Indian startup where I work on many things ML + software engineering. An average day involves building and/or debugging backend ML pipelines. Sometimes I also build new features for existing products.
 
 - In the past, I have worked at [Translated](https://translated.com/welcome) where I had a lot of fun working on the intersection of LLMs, DP, FL, PEFT for the [EU Data Tools for Heart Project](https://www.datatools4heart.eu/).
 

@@ -46,6 +46,14 @@ Hence, to be able to derive more performance by means of increasing the model si
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
     <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Hi there! My name is Srishti. I am a Machine Learning Engineer and Researcher, and I care the most about the following areas of study:
+Alignment (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work specifically for this purpose?) Techniques for efficient training of and inference from Language Models (Here, I am particularly interested in writing software that makes the most efficient use of the accelerators, and techniques that can help reduce the compute and memory requirements without drastically affecting the quality.</description>
+    </item>
+    <item>
       <title>Papers</title>
       <link>http://localhost:1313/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
