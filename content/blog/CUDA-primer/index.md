@@ -69,4 +69,6 @@ The L1 caches and the control occupy much lesser chip area.
 
 ## Memory Bandwidth
 
+### Why can't CPUs just have a higher memory bandwidth?
+
 

@@ -55,19 +55,11 @@ params:
     enabled: true # needs to be explicitly set
     title: "Srishti Gureja"
     subtitle: "ML Engineer and Researcher"
-    # imageUrl: "/img/aryaman.jpg"
-    # imageWidth: 120
-    # imageHeight: 120
-    # imageTitle: vibing
-    buttons:
-      - name: About
-        url: about
-      - name: Code
-        url: code
-      - name: Blog
-        url: blog
-      - name: Talks
-        url: talks
+    imageUrl: "/img/sg.jpg"
+    imageWidth: 135
+    imageHeight: 140
+    imageTitle: sg
+    buttons: []
 
   # home-info mode
   homeInfoParams:
@@ -115,18 +107,14 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: about
-      name: about
-      url: /about/
-      weight: 10
     - identifier: code
       name: code
       url: /code/
-      weight: 20
+      weight: 10
     - identifier: blog
       name: blog
       url: /blog/
-      weight: 30
+      weight: 20
     # - identifier: categories
     #   name: categories
     #   url: /categories/
@@ -134,11 +122,11 @@ menu:
     - identifier: talks
       name: talks
       url: /talks/
-      weight: 40
+      weight: 30
     - identifier: search
       name: search
       url: /search/
-      weight: 50
+      weight: 40
     # - identifier: example
     #   name: example.org
     #   url: https://example.org

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Srishti Gureja</title>
+    <title>Home on Srishti Gureja</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on Srishti Gureja</description>
+    <description>Recent content in Home on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
@@ -44,14 +44,6 @@ Hence, to be able to derive more performance by means of increasing the model si
       <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</guid>
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>Hi there! My name is Srishti. I am a Machine Learning Engineer and Researcher, and I care the most about the following areas of study:
-Alignment (For example: While, in theory, SFT teaches the models to lie and RLHF helps get around this by virtue of Reward Models, how well do RMs work specifically for this purpose?) Techniques for efficient training of and inference from Language Models (Here, I am particularly interested in writing software that makes the most efficient use of the accelerators, and techniques that can help reduce the compute and memory requirements without drastically affecting the quality.</description>
     </item>
     <item>
       <title>Papers</title>
