@@ -29,6 +29,7 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
+  social: true
 
   ShowReadingTime: false
   ShowShareButtons: false
