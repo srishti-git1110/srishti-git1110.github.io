@@ -20,9 +20,13 @@
       <link>https://srishti-git1110.github.io/blog/moes/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>https://srishti-git1110.github.io/blog/moes/</guid>
-      <description>In this short post, I am going to talk about the Switch Transformer paper.
-Background and Architecture To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.
-Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token. And tangential to this, work by Kaplan et al.</description>
+      <description>&lt;p&gt;In this short post, I am going to talk about the Switch Transformer paper.&lt;/p&gt;
+&lt;h2 id=&#34;background-and-architecture&#34;&gt;Background and Architecture&lt;/h2&gt;
+&lt;p&gt;To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;ffnn.png#center&#34; alt=&#34;fully activated dense model&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token.
+And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361&#34;&gt;Kaplan et al. (2020)&lt;/a&gt; becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.&lt;/p&gt;</description>
     </item>
     <item>
       <title>[WIP] Learning CUDA Programming: A Primer</title>
