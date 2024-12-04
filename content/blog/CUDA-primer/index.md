@@ -31,6 +31,14 @@ Now, here's the thing: In older days, 1 processor used to mean 1 processing unit
 
 👉 If you google [intel core i9 processor](https://www.intel.com/content/www/us/en/products/details/processors/core/i9/products.html), the table there has a column # of "cores".
 
+## Clock rate
+
+## Types of Random Access Memory (RAM)
+Before proceeding to study the processor architectures, it's worth discussing in brief two types of RAM - Static RAM (SRAM) and Dynamic RAM (DRAM).
+
+1. **SRAM** - 
+2. **DRAM** - 
+
 ## Processor Architectures (Hardware Design)
 Let us now look into the architectures of the CPU and the GPU, and try to make sense of why the CPU is called a latency device and the GPU a throughput device.
 
@@ -39,8 +47,10 @@ Let us first look at what a chip with 4 cores looks like:
 
 ![A CPU chip](cpu-chip.png#center)
 *[Image source](https://cvw.cac.cornell.edu/gpu-architecture/gpu-characteristics/design)*
+A slight but important correction to note here is that while according to the figure above, the DRAM (sometimes simply referred to as RAM or system memory) appears to be located on the chip, it's not acutally the case. The DRAM is a separate hardware entity that's mounted on the motherboard.
 
-Pay attention to how the chip area is divided among the different components. Note also the multiple levels of cache memories present on the chip (purple and blue) -- they help to reduce the latency by decreasing the required amounts of high latency memory (DRAM) accesses.
+Next, pay attention to *how* the chip area is divided among the different components.  Note also the multiple levels of cache memories present on the chip (purple and blue) -- they help to reduce the latency by decreasing the required amounts of high latency memory (DRAM) accesses. Ah, I went too fast here! To further clarify, since 
+
 
 Now let's zoom into a single core:
 
