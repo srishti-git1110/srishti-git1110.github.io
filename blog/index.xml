@@ -6,15 +6,8 @@
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://srishti-git1110.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Coming Soon] Scaling Laws: What We Know So Far</title>
-      <link>https://srishti-git1110.github.io/blog/sclaing-laws/</link>
-      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/sclaing-laws/</guid>
-      <description>On what we know so far about Scaling Laws in LLMs.</description>
-    </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
       <link>https://srishti-git1110.github.io/blog/moes/</link>
