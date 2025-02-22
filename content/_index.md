@@ -9,4 +9,4 @@ I care the most about the following areas of study:
 - Techniques for efficient training of and inference from Language Models
 - Fast and Efficient Distributed Systems
 
-I am a Statistics major and a self-taught Machine Learning Research Engineer. I am best reached via [twitter](https://twitter.com/sGx_tweets) or [email](mailto:srishtigureja1110@gmail.com).
+I am best reached via [twitter](https://twitter.com/sGx_tweets) or [email](mailto:srishtigureja1110@gmail.com).

@@ -9,15 +9,10 @@ draft: false
 mathjax: true
 ---
 
-I want this post to be an entry point for anyone willing to learn GPU programming without a formal background in compsci/comp arch (I myself belong to this category so sorry in advance for any errors that I might make, and please email me to get them corrected). 
+This post covers the very basic foundation needed to learn GPU programming and/or Parallel programming on CPUs only.
 
-I will cover the architectural details of two of the several processors that empower the modern day computers - the CPUs and the GPUs.
-By the end of this post, the reader should have a good understanding of the following terms - (in no particular order) chips, processors, microprocessors, cores, latency device, throughput device, clock speed, threads, processes, instructions, memory bandwidth, memory system.
-
-## Why are we here?
-A few months back, I used to visit the PyTorch forums almost daily. When I just began reading over there, terms "host memory", and "device memory" confused me (I haven't majored in CS and hence the unfamiliarity with basics).
-
-A quick lookup did the deal but a similar thing happened as I started reading the PMPP book with a goal to learn parallel programming on GPU "devices" ;). I was able to get a hold of the code fairly easily (because C++ doesn't haunt - I like it more than Python which is what ML Researchers like myself usually use), but the jargons weren't entirely clear at once and hence this primer post.
+I will cover the architectural details of two of the several processors that empower the modern day computer - the CPUs and the GPUs.
+By the end of this post, one should have a good understanding of the following terms - (in no particular order) chips, processors, microprocessors, cores, latency device, throughput device, clock speed, threads, processes, instructions, memory bandwidth, memory system.
 
 ## Core, Microprocessor/Processor, Chip
 "A chip" is the physical semiconductor chip; it's "a physical integrated circuit" comprised of transistors, resistors, and capacitors.

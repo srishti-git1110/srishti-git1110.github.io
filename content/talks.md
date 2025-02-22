@@ -5,7 +5,7 @@ aliases:
 math: true
 ---
 
-Below are some of the talks that I've delivered on Cohere's Discord.
+Below are some of my talks that I've delivered on Cohere's Discord.
 
 ### ML Efficiency
 
