@@ -187,7 +187,7 @@ While the benefit of training an MoE/Switch model over its FLOPs matched baselin
 ## Let's "infer" the tradeoff!
 Now, let's "infer" a tradeoff from whatever we've studied till now. I am using those quotes because the tradeoff is regarding the Inference stage. :-)
 
-The obvious reason being that all the experts need to be loaded 
+
 As we've seen, with the same amount of computational budget, MoE/Switch performs better than the FLOPs matched dense baseline owing to ofcourse, the greater number of parameters that it has. What this also means for the inference stage is that the former requires more memory than the latter in exchange of the performance gains that it offers. The obvious reason being that all the experts need to be loaded in the memory.
 
 Hence, it's a memory vs performance tradeoff.
