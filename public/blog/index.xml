@@ -6,23 +6,20 @@
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Coming Soon] Scaling Laws: What We Know So Far</title>
-      <link>http://localhost:1313/blog/sclaing-laws/</link>
-      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/sclaing-laws/</guid>
-      <description>On what we know so far about Scaling Laws in LLMs.</description>
-    </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
       <link>http://localhost:1313/blog/moes/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/moes/</guid>
-      <description>In this short post, I am going to talk about the Switch Transformer paper.
-Background and Architecture To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.
-Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token. And tangential to this, work by Kaplan et al.</description>
+      <description>&lt;p&gt;In this short post, I am going to talk about the Switch Transformer paper.&lt;/p&gt;
+&lt;h2 id=&#34;background-and-architecture&#34;&gt;Background and Architecture&lt;/h2&gt;
+&lt;p&gt;To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;ffnn.png#center&#34; alt=&#34;fully activated dense model&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token.
+And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361&#34;&gt;Kaplan et al. (2020)&lt;/a&gt; becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.&lt;/p&gt;</description>
     </item>
     <item>
       <title>[WIP] Learning CUDA Programming: A Primer</title>

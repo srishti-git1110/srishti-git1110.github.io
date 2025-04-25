@@ -6,23 +6,20 @@
     <description>Recent content in Home on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Coming Soon] Scaling Laws: What We Know So Far</title>
-      <link>http://localhost:1313/blog/sclaing-laws/</link>
-      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/sclaing-laws/</guid>
-      <description>On what we know so far about Scaling Laws in LLMs.</description>
-    </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
       <link>http://localhost:1313/blog/moes/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/moes/</guid>
-      <description>In this short post, I am going to talk about the Switch Transformer paper.
-Background and Architecture To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.
-Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token. And tangential to this, work by Kaplan et al.</description>
+      <description>&lt;p&gt;In this short post, I am going to talk about the Switch Transformer paper.&lt;/p&gt;
+&lt;h2 id=&#34;background-and-architecture&#34;&gt;Background and Architecture&lt;/h2&gt;
+&lt;p&gt;To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;ffnn.png#center&#34; alt=&#34;fully activated dense model&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Hence, to be able to derive more performance by means of increasing the model size, more computation is required. Implicitly, more model parameters =&amp;gt; more computation performed by a single token.
+And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361&#34;&gt;Kaplan et al. (2020)&lt;/a&gt; becomes super relevant as they discuss training larger models on comparatively smaller amounts of data as the computationally optimal approach.&lt;/p&gt;</description>
     </item>
     <item>
       <title>[WIP] Learning CUDA Programming: A Primer</title>
@@ -50,22 +47,134 @@ Hence, to be able to derive more performance by means of increasing the model si
       <link>http://localhost:1313/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/code/</guid>
-      <description>Visit my github for more. Following are some selected samples.
-Paper Implementations Switch Transformers.
-Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity..
-. </description>
+      <description>&lt;p&gt;Visit my &lt;a href=&#34;https://github.com/srishti-git1110&#34;&gt;github&lt;/a&gt; for more. Following are some selected samples.&lt;/p&gt;
+&lt;h3 id=&#34;paper-implementations&#34;&gt;Paper Implementations&lt;/h3&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/srishti-git1110/torch-switch-transformers&#34;&gt;Switch Transformers&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity.&lt;/span&gt;.&lt;br&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/srishti-git1110/torch-switch-transformers&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     <item>
       <title>Talks</title>
       <link>http://localhost:1313/talks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/talks/</guid>
-      <description>Below are some of the talks that I&amp;rsquo;ve delivered on Cohere&amp;rsquo;s Discord.
-ML Efficiency GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection.
-. Talk Slides SpQR: A Sparse-Quantized Representation for Near-lossless LLM Weight Compression.
-. Talk Slides LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale.
-. Talk Slides NLP GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints.
-. Talk Slides Universal and Transferable Adversarial Attacks on Aligned Language Models.</description>
+      <description>&lt;p&gt;Below are some of my talks that I&amp;rsquo;ve delivered on Cohere&amp;rsquo;s Discord.&lt;/p&gt;
+&lt;h3 id=&#34;ml-efficiency&#34;&gt;ML Efficiency&lt;/h3&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2403.03507&#34;&gt;GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/1I_4SW4ArncOgrGB5gVRfVkSo_3osZ9cC/view&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/1cLEVYjd7W3hc9Pz9vNth6L5Rw-Z4nzN5PXyNGN8ky7s/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2306.03078&#34;&gt;SpQR: A Sparse-Quantized Representation for Near-lossless LLM Weight Compression&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/1Bny_KBOnuDDmK1pdt_1QpBEYU8aEkXuK/view&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/1yj-_pnTZEBXhHlBczFA9q0EqE8zjAaNyI2XG8zpef8M/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2208.07339&#34;&gt;LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/12BaLLOeYU0tVH25PKfBsebF972xcir2t/view&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/1hAgm3VqR4e6dromxyurGAFThWb4uHAw-JE-i1Ag-55k/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;nlp&#34;&gt;NLP&lt;/h3&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2305.13245&#34;&gt;GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/1YlEXIzbwPifWy5Byib4on5zHkJoQeQfk/view&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/10VXjiUtca3gcgR6PiEQHFhh7J1cvtOGZQZRX9eJPlTk/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2307.15043&#34;&gt;Universal and Transferable Adversarial Attacks on Aligned Language Models&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/1mKhfhOwHuQH96CNEI5ZP3RjNCGZZ62pu/view&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/1YK1-wyiVPaPe6Rk7tFWABwKhLfIK399MT2MMIiGw4uY/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2306.15595&#34;&gt;Extending Context Window of Large Language Models via Positional Interpolation&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://drive.google.com/file/d/13x1SgBadD2zHLn_YtjHm3syVjgMXtN1M/view?t=11&#34;&gt;Talk&lt;/a&gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://docs.google.com/presentation/d/1D7jeVFS1v6syjRzVF6WgZrn6bBCaDnGPrWMQfzmQfiY/edit?usp=sharing&#34;&gt;Slides&lt;/a&gt;&lt;/span&gt;
+    
+    &lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>
