@@ -27,15 +27,36 @@ Now, here's the thing: In older days, 1 processor used to mean 1 processing unit
 👉 If you google [intel core i9 processor](https://www.intel.com/content/www/us/en/products/details/processors/core/i9/products.html), the table there has a column # of "cores".
 
 ## Clock rate
+(While I won't go into a lot of details here, it is slighlty important to have at least a rough idea of what the Clock Rate actually is.)
+
+By definition, it's the number of clock cycles per second. The term clock cycle is what actually needs an explanation: it's the time taken (for the internal oscillator) to complete one electric signal. Now, an instruction (which could be anything like adding two numbers or writing data to the memory) can be completed by the CPU within one or more than one clock cycles and hence the clock rate is significant in determining the number of instructions that the CPU can finish in a second.
+
+Importantly, a higher clock rate doesn't always imply a faster CPU because other factors like the CPU architecture etc. also play a role. But keeping other things constant, a higher clock rate does imply a faster CPU and we'll keep that notion in mind for the rest of this blog at least.
+
+👉 *Back in the day, increasing the clock rate used to be the primary way to increase the processor speed until it wasn't possible anymore due to high energy consumption and heating issues which is when the hardware vendors pivoted to multicore CPUs as a means to empower high speed demanding applications. And that is why every programmer wants to be able to write ***efficient*** parallel programs in order to make their applications run faster on the modern day processors.*
+<!-- 
+While we discussed clock rate in the context of the processor cores (which relates to the speed of instruction execution which in turn involves several steps that I am not discussing for brevity), other chip components like the caches also have their own clock rates. So the clock rate of, say, L2 cache determines how fast its internal operations like locating and fetching the requested data take place.
+
+(I haven't discussed the CPU architecture but have already talked of the "cache" -- sorry about it. For now, just understand that cache is one of the components on the chip that refers to a memory that's faster to access as compared to the main memory which is mounted on the motherboard.)
+
+👉 *As an aside, if we think a little more about it, it's really the cache's clock rate that's one of the factors in determining the latency of cache access!* -->
+
 
 ## Types of Random Access Memory (RAM)
-Before proceeding to study the processor architectures, it's worth discussing in brief two types of RAM - Static RAM (SRAM) and Dynamic RAM (DRAM).
+Before proceeding to study the processor architectures, it's worth discussing in brief two types of RAM - Static RAM (SRAM) and Dynamic RAM (DRAM). 
 
-1. **SRAM** - 
-2. **DRAM** - 
+[RAM is just a type of memory from which any data, regardless of its position, can be accessed in the same time using its address. The abstract/conceptual way to think about memory, be it on-chip or off-chip, is as an array of bytes each having its own address that can be used to access it.]
 
-## Processor Architectures (Hardware Design)
-Let us now look into the architectures of the CPU and the GPU, and try to make sense of why the CPU is called a latency device and the GPU a throughput device.
+The short story is that the hardware components used to build these two types of RAM differ from each other which makes SRAM way faster but also bulkier and way more expensive as compared to DRAM.
+
+1. **SRAM** - The design is such that a single cell requires 6 transistors -- 6 transistors are required to store a bit which makes SRAM bulky but since these transistors hold the charge permanently as long as power is supplied, SRAM doesn't need to be refreshed making it faster. Owing to its design again, a lot of chip area is required to store one bit making it expensive.
+
+2. **DRAM** - DRAM only requires one capacitor and one transistor to store a bit where the capacitor stores the charge representing the bit (0 or 1). Over time, this charge leaks and so DRAM cannot hold the data permanently even through the time when power is supplied requiring continous refreshes to prevent data loss. This makes DRAM slower but cheaper as less area and transistors are dedicated to storing a bit.
+
+Why it's important to know the distinction between these two is simply because modern day processors leverage various memories of which some are designed as DRAM and some as SRAM.
+
+## Processor Architectures
+Let us now look into the architectures of the CPU and the GPU, and try to make sense of why the CPU is called a latency device and the GPU, a throughput device.
 
 ### CPU
 Let us first look at what a chip with 4 cores looks like:
@@ -58,6 +79,8 @@ A few main components are shown in the core above:
 
 3. A big L1 cache: Ofcourse, much smaller than the DRAM, a significant portion on each is dedicated to the L1 cache again to reduce the latency.
 
+
+
 ### GPU
 From the same [source](https://cvw.cac.cornell.edu/gpu-architecture/gpu-characteristics/design), here's what a GPU chip looks like:
 
@@ -69,8 +92,7 @@ The L1 caches and the control occupy much lesser chip area.
 
 
 
-
-## Instructions, Threads, Processes
+## Memory Bus
 
 ## Memory Bandwidth
 
