@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reinforcement Learning, Decision Making on Srishti Gureja</title>
+    <link>http://localhost:1313/tags/reinforcement-learning-decision-making/</link>
+    <description>Recent content in Reinforcement Learning, Decision Making on Srishti Gureja</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/reinforcement-learning-decision-making/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>http://localhost:1313/blog/rl/</link>
+      <pubDate>Tue, 10 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/rl/</guid>
+      <description>&lt;h1 id=&#34;prep-formalizing-the-rl-problem&#34;&gt;Prep: Formalizing the RL problem&lt;/h1&gt;
+&lt;p&gt;Reinforcement learning is the science of decision making. What does it mean to make decisions? Making decisions requires one to take into account the current circumstances and then take an action(s) keeping the long term effects of the decision in mind. RL is no different.&lt;/p&gt;
+&lt;p&gt;The way humans &amp;ldquo;learn&amp;rdquo; to make decisions using their life experiences is analogous to the &amp;ldquo;learning&amp;rdquo; part in Reinforcement Learning.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
