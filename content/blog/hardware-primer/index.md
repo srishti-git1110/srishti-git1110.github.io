@@ -1,11 +1,11 @@
 ---
 title: "[WIP] CPU, GPU and stuff!"
 layout: post
-date: 2024-03-31
+date: 2025-11-30
 tags:
     - Computer Architecture, Optimization, Parallel Processing
 description: ""
-draft: true
+draft: false
 mathjax: true
 ---
 

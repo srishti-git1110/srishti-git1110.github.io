@@ -6,8 +6,18 @@
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[WIP] CPU, GPU and stuff!</title>
+      <link>http://localhost:1313/blog/hardware-primer/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/hardware-primer/</guid>
+      <description>&lt;p&gt;Some beginner stuff!&lt;/p&gt;
+&lt;h2 id=&#34;core-microprocessorprocessor-chip&#34;&gt;Core, Microprocessor/Processor, Chip&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;A chip&amp;rdquo; is the physical semiconductor chip; it&amp;rsquo;s &amp;ldquo;a physical integrated circuit&amp;rdquo; comprised of transistors, resistors, and capacitors.&lt;/p&gt;
+&lt;p&gt;A processor (here, think of CPU, the central &amp;ldquo;processing&amp;rdquo; unit) is a digital circuit that&amp;rsquo;s implemented on a single or a few chips. Now, the term micro is appended to the beginning of processors to refer to the fact that it takes a single or a very few chips to implement a microprocessor. But this is more of a definition. In the context/scope of this post, consider 1 microprocessor = 1 chip.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
       <link>http://localhost:1313/blog/moes/</link>
