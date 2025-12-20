@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Computer Architecture, Optimization, Parallel Processing on Srishti Gureja</title>
+    <link>https://srishti-git1110.github.io/tags/computer-architecture-optimization-parallel-processing/</link>
+    <description>Recent content in Computer Architecture, Optimization, Parallel Processing on Srishti Gureja</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://srishti-git1110.github.io/tags/computer-architecture-optimization-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[WIP] CPU, GPU and stuff!</title>
+      <link>https://srishti-git1110.github.io/blog/hardware-primer/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://srishti-git1110.github.io/blog/hardware-primer/</guid>
+      <description>&lt;p&gt;Some beginner stuff!&lt;/p&gt;
+&lt;h2 id=&#34;core-microprocessorprocessor-chip&#34;&gt;Core, Microprocessor/Processor, Chip&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;A chip&amp;rdquo; is the physical semiconductor chip; it&amp;rsquo;s &amp;ldquo;a physical integrated circuit&amp;rdquo; comprised of transistors, resistors, and capacitors.&lt;/p&gt;
+&lt;p&gt;A processor (here, think of CPU, the central &amp;ldquo;processing&amp;rdquo; unit) is a digital circuit that&amp;rsquo;s implemented on a single or a few chips. Now, the term micro is appended to the beginning of processors to refer to the fact that it takes a single or a very few chips to implement a microprocessor. But this is more of a definition. In the context/scope of this post, consider 1 microprocessor = 1 chip.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
