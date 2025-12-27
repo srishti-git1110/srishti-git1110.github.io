@@ -49,7 +49,7 @@ If we now want to calculate the peak number of floating point ops that can be pe
 
 2.9 x 2 x 9 x 16 = 835 GFLOPS
 
-If we could hence build a machine with a higher clock rate, that directly translates to better "peak" performance. Utilizing it or not depends on one's skills. :)
+If we could hence build a machine with a higher clock rate, that directly translates to better "peak" performance. Utilizing it as much as possible depends on one's skills. :)
 
 
 
@@ -88,7 +88,20 @@ A few main components are shown in the core above:
 
 2. A Control Unit (CU): A major area is occupied by this component as its two main functions help greatly in reducing the latency - branch prediction and data forwarding. A larger CU again serves the low latency design.
 
-3. Caches: A significant (i.e. significantly large when compared to GPU cache) portion of each core is dedicated to on-chip caches as caches reduce the latency by reducing the amount of RAM accesses required. DRAM accesses are large latency accesses in that they take a lot more clock cycles to finish as compared to on-chip caches and hence cause stalling if the processor needs to access the DRAM frequently. The way caches load data is in the granularity of what's knows as <u>cache lines</u>.
+3. Caches: A significant (i.e. significantly large when compared to GPU cache size) portion of each core is dedicated to on-chip caches as caches reduce the latency by reducing the amount of RAM accesses required. DRAM accesses are large latency accesses in that they take a lot more clock cycles to finish as compared to on-chip caches and hence cause stalling if the processor needs to access the DRAM frequently. 
+
+<u> A bit about caches </u>
+
+- Temporal Locality: Let's say the processor needs acess to a datum value that's not in any of the caches yet and hence needs to be fetched from the memory. When this datum is fetched from the memory for the processor to be able to use it, it's also loaded into the cache. This serves what's known as "temporal locality" which, in essence, means that the processor has the tendency to use the same datum value again in near future and hence it's valuable to store it in the cache. 
+
+- Spatial Locality: The way data is loaded in the cache(s) is in the granularity of what's knows as <u>cache lines</u>. This means it's not just one particular datum that's loaded in the cache, but a whole "cache line" of contiguous data values is loaded along with it. So, let's say the cache line size for a particular processor is 128 bytes (which is the case for my machine - Apple M4), that's equivalent to loading a line of 4 fp32 floats. Consequently, cache eviction, which refers to removing certain data from the cache in order to feed in new data, also happens in cache lines. The question here is why we would do this. It's because this serves "spatial locality" which states that the processor is likely to use in future the data values near the current datum it's required to use.
+
+Let's see this in action:
+
+
+
+Understanding caches and the way they work is really important for performance engineering. One example of that is here.  
+
 
 4. SIMD units: 
 

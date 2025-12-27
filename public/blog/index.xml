@@ -6,8 +6,20 @@
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[WIP] Optimizing matmul on CPU</title>
+      <link>http://localhost:1313/blog/matmul-cpu/</link>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/matmul-cpu/</guid>
+      <description>&lt;h2 id=&#34;introduction-and-setup&#34;&gt;Introduction and Setup&lt;/h2&gt;
+&lt;p&gt;This blog starts with a naive implementation of matmul in C and optimizes it one step at a time.&lt;/p&gt;
+&lt;p&gt;I am using &lt;a href=&#34;https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb&#34;&gt;the following machine&lt;/a&gt; with a 10 core CPU (4 Performance cores+6 Efficiency cores).&lt;/p&gt;
+&lt;p&gt;Food for thought: Is matrix multiplication on CPU compute bound or memory bound? Think about it&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;algorithmic-complexity-of-matrix-multiplication-calculating-the-flops-required&#34;&gt;Algorithmic complexity of Matrix Multiplication: Calculating the FLOPs required&lt;/h2&gt;
+&lt;p&gt;Matrix multiplication is ubiquitous in many areas of computer sciene. As the matrices grow in sizes, the amount of FLOPs required to calculate the matmul grow cubically&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Let&amp;rsquo;s see how.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>[WIP] CPU, GPU and stuff!</title>
       <link>http://localhost:1313/blog/hardware-primer/</link>
