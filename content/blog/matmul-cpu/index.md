@@ -57,6 +57,22 @@ gcc -Wall -O3 sgemm-cpu/matmuls/naive.c -o sgemm-cpu/matmuls/naive
 
 All the further optimizations use the same flags to compile the code.
 
+### A minor optimization: Avoiding unnecessary memory accesses
+A very small thing we could do with the naive implementation is avoiding multiple reads and writes of intermediate partial sums from and to the memory/cache, like so:
+
+```C
+for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            float running_sum = 0.0;
+            for (int k = 0; k < N; k++) {
+                running_sum += A[i][k] * B[k][j];
+            }
+            C[i][j] = running_sum;
+        }
+    }
+```
+That helps a bit and brings the latency down to 199.866s. This optimization is simply causing the compiler to keep the partial sum in the registers only and writing it back to the memory only once when the full sum is done. Meaning in this case the compiler isn't issuing separate instructions to store the partial sum back to the memory after every loop iteration and to load it back on the next iteration; and that reduces some latency. [^3] 
+
 ## [Loop reordering](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/cache_aware.c)
 The naive implementation follows the most natural mathy way to calculate a matmul $C = AB$ -- element $C[0][0]$ is *fully* calculated first via a scalar product of the first row of $A$ with the first column of $B$. Element $C[0][1]$ is *fully* calculated next via the scalar product of the first row of $A$ with the second column of $B$, and so on. 
 
@@ -96,17 +112,17 @@ for (int i = 0; i < N; i++) {
 ```
 
 ### What was the bottleneck?
-A simple loop reordering of our naive implementation provided a 45 fold improvement. That's a lot for such a simple change. What does this tell us? Obviously, we still performed total 137 GFLOPs so that part didn't change. Turns out, in the naive implementation our bottleneck was the memory bandwidth. Meaning the CPU execution units (ALUs) were bottlenecked by the latency of data transfer between the memory and the CPU, implying we were overall memory bound in the naive implementation. Of course, we cannot change the memory bandwidth towards a faster memory. So what did we do? We simply wrote the code such that it allows for better cache reuse in subsequent loop iters!
+A simple loop reordering of our naive implementation provided a 45 fold improvement. That's a lot for such a simple change. What does this tell us? Obviously, we still performed total 137 GFLOPs so that part didn't change. Turns out, in the naive implementation our bottleneck was the memory bandwidth. Meaning the CPU execution units (ALUs) were bottlenecked by the latency of data transfer between the memory and the CPU, implying we were overall *memory bound in the naive implementation*. Of course, we cannot change the memory bandwidth towards a faster memory. So what did we do? We simply wrote the code such that it allows for better cache reuse in subsequent loop iters!
 
 ### What about the computation aspect?
+// vectorization enabled by loop ordering - figured out by the compiler
 
 
 ## Tiling
-
-
 
 [^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better complexity.
 
 [^2]: Explore all optimization levels [here](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html).
 
+[^3] Sometimes, the compiler might also consider it safe to skip the extra store/reload steps when we directly update $C[i][j]$ in every loop iteration. But other times it may not. So, we're just being explicit here and writing code such that the compiler would *always* consider it safe to not issue the extra store/reload instructions for the partial sums.
 
