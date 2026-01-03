@@ -100,13 +100,14 @@ On the second iteration $i=0, j=0, k=1$, we need $A[0][1], B[1][0], C[0][0]$ and
 
 <!-- Hence, for the access pattern shown above, we're getting good cache hit rates for values of A and C but a very high miss rate for values of B -- at each loop iteration, we have a hit for $C[0][0]$, mostly hits for value of the first row of A but we have a cache miss for all the values of B involved ($B[0][0], B[1][0]...$). Simply because the cache line loads contigous values from the memory and owing to the row major storage in the memory, the different values of B involved in calculating $C[0][0]$ are 4096 values (4096x4 bytes) apart which well exceeds the size of a usual cache line.  -->
 
-2. The second insight is not too difficult to understand -- if we just change the loop orders (eg. $jik$ or $jki$ etc. instead of the most natural  $ijk$), we'll still get the correct matmul. It's also why I was italicizing *fully* above. Thing is that with different loop orders we're not fully calculating each element of C in one full iteration of the innermost loop but that doesn't hurt the correctness of the matmul and that's easy to realise. Alright. Given that, we note that some loop orders have a better overall cache hit rate as compared to the naive $ijk$ order (btw some orders also have a worse rate than $ijk$!). And hence just by changing the orders, we'll be able to reduce the latency by not having to make as many high latency accesses to the memory. Experimenting w different orders, the lowest latency of 4.49s corresponds to order ikj down from 203.229s with order $ijk$ which is a ~45x improvement already!
+2. The second insight is not too difficult to understand -- if we just change the loop orders (eg. $jik$ or $jki$ etc. instead of the most natural  $ijk$), we'll still get the correct matmul. It's also why I was italicizing *fully* above. Thing is that with different loop orders we're not fully calculating each element of C in one full iteration of the innermost loop but that doesn't hurt the correctness of the matmul and that's easy to realise. Alright. Given that, we note that some loop orders have a better overall cache hit rate as compared to the naive $ijk$ order (btw some orders also have a worse rate than $ijk$!). And hence just by changing the orders, we'll be able to reduce the latency by not having to make as many high latency accesses to the memory. Experimenting w different orders, the lowest latency of 4.31s corresponds to order ikj down from 203.229s with order $ijk$ which is a ~45x improvement already!
 
 ```C
 for (int i = 0; i < N; i++) {
         for (int k = 0; k < N; k++) {
+            float a_ik = A[i][k];
             for (int j = 0; j < N; j++) {
-                C[i][j] += A[i][k] * B[k][j];
+                C[i][j] += a_ik * B[k][j];
             }
         }
     }
@@ -122,14 +123,40 @@ A simple loop reordering of our naive implementation provided a 45 fold improvem
 No. Because with the reordered loops, we're not calculating the full result $C[i][j]$ in one iteration of the inner most loop, we can't avoid the loading and storing of partial sums anymore!
 
 ## Tiling
-<!-- Let me say this: IMHO, tiling is simple (really, very simple) but explained too poorly (hastily?) in too many places. 
+The long story short about tiling: it's all about enabling a better cache reuse. Nothing different from the goal of loop reordering.
 
-Let's try to give it some time by doing something boring. For our best loop order $ikj$, we start by looking at the values that are accessed by the inner most $j$ loop when i=0, k=0.
+Let's try to understand tiling by doing something boring. For our best loop order $ikj$, we start by looking at the values that are accessed by the inner $k, j$ loops for different values of $i$.
 
-- $A[0][0]$
-- C[0][0], C[0][1], ... C[0][4095] -->
+$(i=0, k=0 to 4095, j=0 to 4095)$
+
+- $A[0][0], A[0][1], ... A[0][4095]$ --> A's first row
+- $C[0][0], C[0][1], ... C[0][4095]$ --> C's first row
+- $B[0][0], B[0][1], ... B[0][4095]$ --> B's first row
+- $B[1][0], B[1][1], ... B[1][4095]$ --> B's second row
+...                                 
+- $B[4095][0], B[4095][1], ... B[4095][4095]$ --> B's 4095th row
 
 
+$(i=1, k=0 to 4095, j=0 to 4095)$
+
+- $A[1][0], A[1][1], ... A[1][4095]$ --> A's second row
+- $C[1][0], C[1][1], ... C[1][4095]$ --> C's second row
+- $B[0][0], B[0][1], ... B[0][4095]$ --> B's first row
+- $B[1][0], B[1][1], ... B[1][4095]$ --> B's second row
+...                                 
+- $B[4095][0], B[4095][1], ... B[4095][4095]$ --> B's 4095th row
+
+What do we infer? 
+
+👉 At every iteration of the $i$ loop, the code accesses a different row of A and C but all the rows of B are accessed at each iteration. 
+
+
+So far so good. Let's now take an example with smaller 8x8 matrices and see what caches actually look like with our best loop order. For the example, assume a cache line of 128 bytes = 32 floats, and the cache size to be 640 bytes = 5 cache lines.
+
+
+The problem is that by the time the control proceeds to a new value of i and tries to access the values from the first few rows of B (in code this is just the first few values of j and k), they're already evicted from the cache requiring it to fetch them from the high latency DRAM. Further, to be able to store these new values from the first few rows of B in the cache, cache eviction will happen for the values of B that already exist from the previous i iterion -- and these will be values from some last rows of B. 
+
+In essence, at each new value of i, we're having to fetch the entries of B from the high latency memory despite the fact that  the same were already fetched in the loop iteration of i! We should definitely do better!
 
 [^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better complexity.
 
