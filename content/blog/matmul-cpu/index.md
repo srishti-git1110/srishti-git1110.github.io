@@ -125,9 +125,10 @@ No. Because with the reordered loops, we're not calculating the full result $C[i
 ## Tiling
 The long story short about tiling: it's all about enabling a better cache reuse. Nothing different from the goal of loop reordering.
 
+
 Let's try to understand tiling by doing something boring. For our best loop order $ikj$, we start by looking at the values that are accessed by the inner $k, j$ loops for different values of $i$.
 
-$(i=0, k=0 to 4095, j=0 to 4095)$
+$(i=0, k=0-4095, j=0-4095)$
 
 - $A[0][0], A[0][1], ... A[0][4095]$ --> A's first row
 - $C[0][0], C[0][1], ... C[0][4095]$ --> C's first row
@@ -137,13 +138,16 @@ $(i=0, k=0 to 4095, j=0 to 4095)$
 - $B[4095][0], B[4095][1], ... B[4095][4095]$ --> B's 4095th row
 
 
-$(i=1, k=0 to 4095, j=0 to 4095)$
+$(i=1, k=0-4095, j=0-4095)$
 
 - $A[1][0], A[1][1], ... A[1][4095]$ --> A's second row
 - $C[1][0], C[1][1], ... C[1][4095]$ --> C's second row
 - $B[0][0], B[0][1], ... B[0][4095]$ --> B's first row
 - $B[1][0], B[1][1], ... B[1][4095]$ --> B's second row
+
 ...                                 
+
+
 - $B[4095][0], B[4095][1], ... B[4095][4095]$ --> B's 4095th row
 
 What do we infer? 
@@ -151,14 +155,36 @@ What do we infer?
 👉 At every iteration of the $i$ loop, the code accesses a different row of A and C but all the rows of B are accessed at each iteration. 
 
 
-So far so good. Let's now take an example with smaller 8x8 matrices and see what caches actually look like with our best loop order. For the example, assume a cache line of 128 bytes = 32 floats, and the cache size to be 640 bytes = 5 cache lines.
+So far so good. Let's now take an example with smaller 8x8 matrices and see what caches actually look like with our best loop order. For the example, assume a fully associative cache following an LRU (least recently used) policy with a cache line of 32 bytes = 8 floats, and a cache size of 160 bytes = 5 cache lines.
+
+The (terrible) figure below shows the values accessed in sequence for $i=0$, and the state of the cache at each step. Red denotes a cache miss requiring a cache update and blue denotes a cache hit with no cache update required. Note that by the time we end $k=2$ for, our cache is full. 
+
+![i=0, k=2](first_cache_full.jpeg)
 
 
-The problem is that by the time the control proceeds to a new value of i and tries to access the values from the first few rows of B (in code this is just the first few values of j and k), they're already evicted from the cache requiring it to fetch them from the high latency DRAM. Further, to be able to store these new values from the first few rows of B in the cache, cache eviction will happen for the values of B that already exist from the previous i iterion -- and these will be values from some last rows of B. 
+The figure below shows the program resumed from $k=3$. Also shown is the cache state at the end of $i=0$ after multiple evictions. Note how the first 5 rows of B had to be evicted even before reaching $i=1$.
 
-In essence, at each new value of i, we're having to fetch the entries of B from the high latency memory despite the fact that  the same were already fetched in the loop iteration of i! We should definitely do better!
+![i=0 done](cache_i0.jpeg)
 
-[^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better complexity.
+
+
+Now what? Start $i=1$. The same story gets repeated and below are the various cache states showing how we need to load the *entire B matrix from the memory* to be able to finish $i=1$! Not even a single row found in cache when needed despite the fact that all of them were loaded in the previous iteration $i=0$.
+
+![i=1](cache_i1.jpeg)
+
+
+Of course, this was true for our particular example that no single row of B was found in the cache. In practice, the number of caches, their sizes, eviction policies, cache line sizes all matter in determining what rows/values are found but the general gist stated below remains the same. 
+
+<!-- The gist is that by the time the control proceeds to a new value of i and tries to access certain values from B, they might already be evicted from the cache requiring them to be loaded them from the high latency DRAM. Further, to be able to store the newly loaded values in the cache, cache eviction will happen for certaiin other values of B that already exist from the previous i iteration -- and these values will again need to be loaded from the memory. -->
+
+The gist: At each new value of i, we're having to load all or some rows (/partial rows depending on the cache line) of B from the high latency memory despite having them loaded in the previous iteration of i. We should definitely do better!
+
+
+
+
+
+
+[^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better theoretical complexity.
 
 [^2]: Explore all optimization levels [here](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html).
 
