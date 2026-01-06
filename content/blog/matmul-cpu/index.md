@@ -179,8 +179,30 @@ Of course, this was true for our particular example that no single row of B was 
 
 The gist: At each new value of i, we're having to load all or some rows (/partial rows depending on the cache line) of B from the high latency memory despite having them loaded in the previous iteration of i. We should definitely do better!
 
+### k-tiling
+
+Think about this: how about there was no eviction and hence no need to reload values of B at each new iteration of i? It'd have been great except that caches are limited and we cannot increase their size. How do we make peace with eviction? By using the data as much as we want before it's evicted. Meaning we load a few rows of B in the cache and use them for all the values of i so that we never require them again? Then load the next few and again use them for all the values of i. The same until we're done with all the rows of B. This is where the word tile comes from -- we're loading and utilizing one tile fully before evicting it. 
 
 
+What I've described is tiling on the k-loop only. In code:
+
+```C
+for (int k_tile=0; k_tile<N; k_tile+=TILE_SIZE) {
+        for (int i=0; i<N; i++) {
+            int kend = (k_tile + TILE_SIZE > N) ? N : k_tile + TILE_SIZE; // check if this is expensive than an if
+            for (int k=k_tile; k<kend; k++) {
+                float a_ik = A[i][k];
+                for (int j=0; j<N; j++) {
+                    C[i][j] += a_ik * B[k][j];
+                }
+            }
+        }
+    }
+```
+
+After doing a good amount of search over different values of TILE_SIZE, I found k-tiling didn't really yield any benefit on my machine both for N=4096 and N=8192. This is simply because of the already large cache sizes of my mac.
+
+### ijk tiling
 
 
 
