@@ -173,7 +173,7 @@ Now what? Start $i=1$. The same story gets repeated and below are the various ca
 ![i=1](cache_i1.jpeg)
 
 
-Of course, this was true for our particular example that no single row of B was found in the cache. In practice, the number of caches, their sizes, eviction policies, cache line sizes all matter in determining what rows/values are found but the general gist stated below remains the same. 
+Of course, this was true for our particular example that 1 cache line = 1 row, and no single row of B was found in the cache. In practice, the number of caches, their sizes, eviction policies, cache line sizes all matter in determining what rows/values are found but the general gist stated below remains the same. 
 
 <!-- The gist is that by the time the control proceeds to a new value of i and tries to access certain values from B, they might already be evicted from the cache requiring them to be loaded them from the high latency DRAM. Further, to be able to store the newly loaded values in the cache, cache eviction will happen for certaiin other values of B that already exist from the previous i iteration -- and these values will again need to be loaded from the memory. -->
 
@@ -200,9 +200,45 @@ for (int k_tile=0; k_tile<N; k_tile+=TILE_SIZE) {
     }
 ```
 
-After doing a good amount of search over different values of TILE_SIZE, I found k-tiling didn't really yield any benefit on my machine both for N=4096 and N=8192. This is simply because of the already large cache sizes of my mac.
+After doing a good amount of search over different values of TILE_SIZE, I found k-tiling didn't really yield any benefit on my machine both for N=4096 and N=8192. This is probably because of the already large cache sizes of my machime.
 
 ### ijk tiling
+Let's now separately understand the purpose of tiling rest of the two loops - i and j.
+
+<u> tiling on the j-loop </u>: With k-tiling, we're still loading all the columns of B in the cache! In the oversimplified example above, 1 row = 1 cache line which obviously isn't the case with bigger matrices and hence, it'd further benefit for the cache hit rate to also tile on the j loop. 
+ 
+
+<u> tiling on the j-loop </u>: Further with both k and j tiled, we'd still be needing all the rows of C (all values of i, but ofc not full rows due to j-tiling) in the cache multiple times for different values of k_tile and j_tile. And that might again lead to cache misses for certain values of C. And hence, it also benefits to tile on the i loop which, combined with j tiling, effectively translates to taking a sub-matrix of C and finishing all the calculations for it (covering all values of k) before proceeding to another sub-matrix. Of course, we cover all the k values in a tiled manner only.
+
+In code, this looks like:
+
+```C
+for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+        int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+
+        for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
+            int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+
+            /* for a certain tile of C (i_tile:iend, j_tile, jend) we now cover all values of k in our already
+            discussed k-tiled manner */
+
+            for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
+                int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
+
+                for (int i = i_tile; i < iend; i++) {
+                    for (int k = k_tile; k < kend; k++) {
+                        float a_ik = A[i][k];
+                        for (int j = j_tile; j < jend; j++) {
+                            C[i][j] += a_ik * B[k][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+```
+With ijk-tiling, I didn't see any significant benefit for N=4096. The lowest latency of 3.16s corresponding to tile sizes 128 256 128 for ikj respectively. 
+For N=8192, this reduced the latency from 34.28s for untiled to 26.20s for tile sizes 128 for all ikj. That's a significant amount of reduction there!
 
 
 
