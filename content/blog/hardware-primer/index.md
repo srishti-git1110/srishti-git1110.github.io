@@ -100,7 +100,7 @@ Let's see this in action:
 
 
 
-Understanding caches and the way they work is really important for performance engineering. One example of that is here.  
+Understanding caches and the way they work is really important for performance engineering. One example of that is [here](https://srishti-git1110.github.io/blog/matmul-cpu/).
 
 
 4. SIMD units: 
