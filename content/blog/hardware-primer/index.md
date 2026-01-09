@@ -90,11 +90,12 @@ A few main components are shown in the core above:
 
 3. Caches: A significant (i.e. significantly large when compared to GPU cache size) portion of each core is dedicated to on-chip caches as caches reduce the latency by reducing the amount of RAM accesses required. DRAM accesses are large latency accesses in that they take a lot more clock cycles to finish as compared to on-chip caches and hence cause stalling if the processor needs to access the DRAM frequently. 
 
-<u> A bit about caches </u>
+<u> Some notes about caches </u>
 
-- Temporal Locality: Let's say the processor needs acess to a datum value that's not in any of the caches yet and hence needs to be fetched from the memory. When this datum is fetched from the memory for the processor to be able to use it, it's also loaded into the cache. This serves what's known as "temporal locality" which, in essence, means that the processor has the tendency to use the same datum value again in near future and hence it's valuable to store it in the cache. 
+<u> Temporal Locality </u>: Let's say the processor needs acess to a datum value that's not in any of the caches yet and hence needs to be fetched from the memory. When this datum is fetched from the memory for the processor to be able to use it, it's also loaded into the cache. This serves what's known as "temporal locality" which, in essence, means that the processor has the tendency to use the same datum value again in near future and hence it's valuable to store it in the cache. 
 
-- Spatial Locality: The way data is loaded in the cache(s) is in the granularity of what's knows as <u>cache lines</u>. This means it's not just one particular datum that's loaded in the cache, but a whole "cache line" of contiguous data values is loaded along with it. So, let's say the cache line size for a particular processor is 128 bytes (which is the case for my machine - Apple M4), that's equivalent to loading a line of 4 fp32 floats. Consequently, cache eviction, which refers to removing certain data from the cache in order to feed in new data, also happens in cache lines. The question here is why we would do this. It's because this serves "spatial locality" which states that the processor is likely to use in future the data values near the current datum it's required to use.
+<u> Spatial Locality </u>: The way data is loaded in the cache(s) is in the granularity of what's knows as <u>cache lines</u>. This means it's not just one particular datum that's loaded in the cache, but a whole "cache line" of contiguous data values is loaded along with it. So, let's say the cache line size for a particular processor is 128 bytes (which is the case for my machine - Apple M4), that's equivalent to loading a line of 4 fp32 floats. Consequently, cache eviction, which refers to removing certain data from the cache in order to feed in new data, also happens in cache lines. The question here is why we would do this. It's because this serves "spatial locality" which states that the processor is likely to use in future the data values near the current datum it's required to use.
+
 
 Let's see this in action:
 
@@ -103,7 +104,7 @@ Let's see this in action:
 Understanding caches and the way they work is really important for performance engineering. One example of that is [here](https://srishti-git1110.github.io/blog/matmul-cpu/).
 
 
-4. SIMD units: 
+4. SIMD units: These are special kind of execution units (ALUs) capable of executing vector instructions in that they can run the same instruction on a multiple data. SIMDs hence provide a form a parallel processing capability within a single core.
 
 
 
@@ -125,6 +126,17 @@ The L1 caches and the control occupy much lesser chip area.
 ## Memory Bus
 
 ## Memory Bandwidth
+By definition, Memory Bandwidth is the rate at which the data can be transferred from the memory to the CPU. This is crucial because it's key in determining how fast programs/applications run especially those involving a lot of data transfer between the memory and the CPU. For example, GPUs come with a much higher bandwidth as compared to the CPUs because their primary purpose is to work simultaneously on a lot of data and hence a low bandwidth would cause the GPU exec units to sit idle -- a waste of time and money!
+
+In general, we classify programs into one of these two categories: Compute bound or Memory bound. For  programs where the memory bandwidth falls short to meet the CPU demands causing the ALUs to sit idle, we call them memory bound as their completion speed is limited by the bandwidth. Whereas programs where most of the time is spent in executing instructions on the CPU and memory bandwidth isn't a bottleneck are termed as being compute bound.
+
+Formally, arithmetic intensity (AI) is used as a measure to determine the nature of a program:
+
+$$ AI = total FLOPs / total bytes $$
+
+AI is simply the number of floating point ops performed per byte of data transferred between the memory and the CPU. High values of AI correspond to compute bound programs as the overall program speed is limited by how fast the exec units perform calculations, whereas small AI values imply a waiting CPU as most of the time is spent in moving data b/w the memory and the CPU making memory bandwidth as the key factor in determining the overall speed.
+
+// add gqa example, discuss modern ai being mem bound
 
 ### Why can't CPUs just have a higher memory bandwidth?
 
