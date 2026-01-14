@@ -91,7 +91,7 @@ for (int i = 0; i < N; i++) {
 ```
 The table below shows that helps very little for $N=4096$ but quite a lot for $N=8192$ [^3]:
 
-| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=4096$) |
+| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
 | `Baseline (np)`        | `0.10s` | `0.74s`  | `–`     | `–`     |
 | `Naive implementation` | `203s`  | `46min`  | `-`    | `-`    |
@@ -134,7 +134,7 @@ What about the subsequent iterations for different values of j and i? Say $i=0, 
 
 2. The second insight is not too difficult to understand -- if we just change the loop orders (eg. $jik$ or $jki$ etc. instead of the most natural  $ijk$), we'll still get the correct matmul. It's also why I was italicizing *fully* above. Thing is that with different loop orders we're not fully calculating each element of C in one full iteration of the innermost loop but that doesn't hurt the correctness of the matmul and that's easy to realise. Alright. Given that, we note that some loop orders have a better overall cache hit rate as compared to the naive $ijk$ order (btw some orders also have a worse rate than $ijk$!). And hence just by changing the orders, we'll be able to reduce the latency by not having to make as many high latency accesses to the memory. Experimenting w different orders, the lowest latency corresponds to order ikj as follows:
 
-| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=4096$) |
+| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
 | `Baseline (np)`        | `0.10s` | `0.74s`  | `–`     | `–`     |
 | `Naive implementation ` | `203s`  | `46min`  | `-`    | `-`    |
@@ -281,7 +281,7 @@ For $N=8192$, this reduced the latency from 34.28s for untiled to 26.20s for til
 
 With ijk tiling, the results are as follows:
 
-| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=4096$) |
+| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
 | `Baseline (np)`        | `0.10s` | `0.74s`  | `–`     | `–`     |
 | `Naive implementation ` | `203s`  | `46min`  | `-`    | `-`    |
@@ -289,7 +289,19 @@ With ijk tiling, the results are as follows:
 | `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
 | `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
 
+The best tile size for $N=4096$ is 128, 256, 128 for ikj respectively, and for $N=8192$ is 128 for all ikj.
 
+
+## Multithreading
+
+| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
+|------------------------|----------|-----------|---------|---------|
+| `Baseline (np)`        | `0.10s` | `0.74s`  | `–`     | `–`     |
+| `Naive implementation ` | `203s`  | `46min`  | `-`    | `-`    |
+| `Naive w register accumulation` | `199s` | `27min` | `1.02x` | `1.7x` |
+| `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
+| `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
+| `Multithreading` |  `1.19s` | `9.88s` | `2.6x` | `2.6x` |
 
 [^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better theoretical complexity.
 
