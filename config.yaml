@@ -108,14 +108,19 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: code
-      name: code
-      url: /code/
-      weight: 10
     - identifier: blog
       name: blog
       url: /blog/
       weight: 20
+    - identifier: oss
+      name: oss
+      url: /oss/
+      weight: 20
+    # - identifier: Projects
+    #   name: projects
+    #   url: /projects/
+    #   weight: 10
+    
     # - identifier: categories
     #   name: categories
     #   url: /categories/

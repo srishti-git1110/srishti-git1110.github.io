@@ -20,7 +20,7 @@ This is my running list of those things -- stuff that I've loved learning to an 
 
 Was the first time I learnt about Vector spaces (but wasn't the first time I learnt about matrices obviously -- that a standard 8/9 thing in ISC board in India). But this was the first time I understood the significance of matrices in great detail beyond abstract concepts. 
 
-2. Reinforcement learning [videos](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ) by David Silver. How cringe/cliche/copied would it sound if I say the best way to think about the problem RL theoretically is to think of humans as agents interacting with an env called life...swear this isn't copied, and agreed, it's a bit unnecessary lol. These lectures have kept me hooked, and I really love thinking about RL as a field. <3 
+2. Reinforcement learning [videos](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ) by David Silver. How cringe/cliche/copied would it sound if I say the best way to think about the problem RL theoretically is to think of humans as agents interacting with an env called life...swear this isn't copied, and agreed, it's a bit unnecessary lol. These lectures had kept me hooked, and I really love thinking about RL as a field. <3 
 
 
 

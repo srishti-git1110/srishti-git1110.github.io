@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Computer Architecture, Optimization, Parallel Processing on Srishti Gureja</title>
-    <link>http://localhost:1313/tags/computer-architecture-optimization-parallel-processing/</link>
+    <link>https://srishti-git1110.github.io/tags/computer-architecture-optimization-parallel-processing/</link>
     <description>Recent content in Computer Architecture, Optimization, Parallel Processing on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/computer-architecture-optimization-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://srishti-git1110.github.io/tags/computer-architecture-optimization-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[WIP] CPU, GPU and stuff!</title>
-      <link>http://localhost:1313/blog/hardware-primer/</link>
+      <link>https://srishti-git1110.github.io/blog/hardware-primer/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/hardware-primer/</guid>
+      <guid>https://srishti-git1110.github.io/blog/hardware-primer/</guid>
       <description>&lt;p&gt;Some beginner stuff!&lt;/p&gt;
 &lt;h2 id=&#34;core-microprocessorprocessor-chip&#34;&gt;Core, Microprocessor/Processor, Chip&lt;/h2&gt;
 &lt;p&gt;&amp;ldquo;A chip&amp;rdquo; is the physical semiconductor chip; it&amp;rsquo;s &amp;ldquo;a physical integrated circuit&amp;rdquo; comprised of transistors, resistors, and capacitors.&lt;/p&gt;

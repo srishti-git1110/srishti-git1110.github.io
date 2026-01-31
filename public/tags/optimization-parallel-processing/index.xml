@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Optimization, Parallel Processing on Srishti Gureja</title>
-    <link>http://localhost:1313/tags/optimization-parallel-processing/</link>
+    <link>https://srishti-git1110.github.io/tags/optimization-parallel-processing/</link>
     <description>Recent content in Optimization, Parallel Processing on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/optimization-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://srishti-git1110.github.io/tags/optimization-parallel-processing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[WIP] Optimizing matmul on CPU</title>
-      <link>http://localhost:1313/blog/matmul-cpu/</link>
+      <link>https://srishti-git1110.github.io/blog/matmul-cpu/</link>
       <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/matmul-cpu/</guid>
+      <guid>https://srishti-git1110.github.io/blog/matmul-cpu/</guid>
       <description>&lt;h2 id=&#34;introduction-and-setup&#34;&gt;Introduction and Setup&lt;/h2&gt;
 &lt;p&gt;This blog starts with a naive implementation of matmul in C and optimizes it one step at a time.&lt;/p&gt;
 &lt;p&gt;I am using &lt;a href=&#34;https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb&#34;&gt;the following machine&lt;/a&gt; with a 10 core CPU (4 Performance cores+6 Efficiency cores).&lt;/p&gt;

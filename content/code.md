@@ -1,16 +1,22 @@
 ---
-title: Papers
+title: Projects
 aliases:
-    - "/code"
+    - "/projects"
 math: true
 ---
 
-Visit my [github](https://github.com/srishti-git1110) for more. Following are some selected samples.
+{{<pub
+    title="WideNet"
+    authors="WideNet in PyTorch"
+    url="https://github.com/srishti-git1110/torch-widenet"
+    github="https://github.com/srishti-git1110/torch-widenet"
+>}}
 
-### Paper Implementations
 {{<pub
     title="Switch Transformers"
-    authors="Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity."
+    authors="Switch Transformer in PyTorch with (optional) aux loss for each layer, configurable number of experts and expert capacity, aux loss free load balancing supported"
     url="https://github.com/srishti-git1110/torch-switch-transformers"
     github="https://github.com/srishti-git1110/torch-switch-transformers"
 >}}
+
+

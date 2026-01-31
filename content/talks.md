@@ -3,9 +3,10 @@ title: Talks
 aliases:
     - "/talks"
 math: true
+showtoc: false
 ---
 
-Below are some of my talks that I've delivered on Cohere's Discord.
+Some paper discussions!
 
 ### ML Efficiency
 
