@@ -58,17 +58,164 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
     <item>
-      <title>Papers</title>
+      <title>Open Source!</title>
+      <link>https://srishti-git1110.github.io/oss/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://srishti-git1110.github.io/oss/</guid>
+      <description>&lt;p&gt;Open source contributions!&lt;/p&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/NousResearch/atropos/pull/331&#34;&gt;atropos: An RL agent to play Universal paperclips&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;The env supports Stage 1 of the game.&lt;/span&gt;.&lt;br&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/NousResearch/atropos/pull/331&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/NousResearch/atropos/pull/319&#34;&gt;atropos: SuperGPQA evaluation environment&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/NousResearch/atropos/pull/319&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/MedARC-AI/med-lm-envs/pull/24&#34;&gt;RL environment for MedXpertQA&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;WideNet in PyTorch&lt;/span&gt;.&lt;br&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/MedARC-AI/med-lm-envs/pull/24&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/deepset-ai/haystack/pull/9608&#34;&gt;haystack: (de)serialization support to StreamingChunk&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/deepset-ai/haystack/pull/9608&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;minor-stuff&#34;&gt;Minor stuff&lt;/h4&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/mem0ai/mem0/pull/3399&#34;&gt;[feat] Mem0: Adding missing kwarg&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/mem0ai/mem0/pull/3399&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/mem0ai/mem0/pull/3384&#34;&gt;[bugfix] Mem0: Correct AWS region&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;Pick aws region from the env variable if specified rather than falling back to default&lt;/span&gt;.&lt;br&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/mem0ai/mem0/pull/3384&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Projects</title>
       <link>https://srishti-git1110.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://srishti-git1110.github.io/code/</guid>
-      <description>&lt;p&gt;Visit my &lt;a href=&#34;https://github.com/srishti-git1110&#34;&gt;github&lt;/a&gt; for more. Following are some selected samples.&lt;/p&gt;
-&lt;h3 id=&#34;paper-implementations&#34;&gt;Paper Implementations&lt;/h3&gt;
+      <description>&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
+    &lt;a href=&#34;https://github.com/srishti-git1110/torch-widenet&#34;&gt;WideNet&lt;/a&gt;.&lt;br&gt;
+    &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
+    
+    &lt;span&gt;WideNet in PyTorch&lt;/span&gt;.&lt;br&gt;
+    
+    &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
+    
+    &lt;span class=&#34;resource pub-icon&#34;&gt;&lt;a href=&#34;https://github.com/srishti-git1110/torch-widenet&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;
+    stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;
+    &lt;path
+        d=&#34;M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22&#34;&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/span&gt;
+    
+    
+    
+    
+    
+    &lt;/div&gt;
+&lt;/div&gt;
 &lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
     &lt;a href=&#34;https://github.com/srishti-git1110/torch-switch-transformers&#34;&gt;Switch Transformers&lt;/a&gt;.&lt;br&gt;
     &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
     
-    &lt;span&gt;Efficient PyTorch implementation of the Switch Transformer with (optional) aux loss for each layer and configurable number of experts and expert capacity.&lt;/span&gt;.&lt;br&gt;
+    &lt;span&gt;Switch Transformer in PyTorch with (optional) aux loss for each layer, configurable number of experts and expert capacity, aux loss free load balancing supported&lt;/span&gt;.&lt;br&gt;
     
     &lt;span&gt;&lt;em&gt;&lt;/em&gt;.&lt;/span&gt;
     
@@ -91,7 +238,7 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
       <link>https://srishti-git1110.github.io/talks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://srishti-git1110.github.io/talks/</guid>
-      <description>&lt;p&gt;Below are some of my talks that I&amp;rsquo;ve delivered on Cohere&amp;rsquo;s Discord.&lt;/p&gt;
+      <description>&lt;p&gt;Some paper discussions!&lt;/p&gt;
 &lt;h3 id=&#34;ml-efficiency&#34;&gt;ML Efficiency&lt;/h3&gt;
 &lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
     &lt;a href=&#34;&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2403.03507&#34;&gt;GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection&lt;/a&gt;&lt;/a&gt;.&lt;br&gt;
