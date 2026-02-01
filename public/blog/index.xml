@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Blogs on Srishti Gureja</title>
-    <link>https://srishti-git1110.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content in Blogs on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://srishti-git1110.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[WIP] Optimizing matmul on CPU</title>
-      <link>https://srishti-git1110.github.io/blog/matmul-cpu/</link>
+      <link>http://localhost:1313/blog/matmul-cpu/</link>
       <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/matmul-cpu/</guid>
+      <guid>http://localhost:1313/blog/matmul-cpu/</guid>
       <description>&lt;h2 id=&#34;introduction-and-setup&#34;&gt;Introduction and Setup&lt;/h2&gt;
 &lt;p&gt;This blog starts with a naive implementation of matmul in C and optimizes it one step at a time.&lt;/p&gt;
 &lt;p&gt;I am using &lt;a href=&#34;https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb&#34;&gt;the following machine&lt;/a&gt; with a 10 core CPU (4 Performance cores+6 Efficiency cores).&lt;/p&gt;
@@ -22,9 +22,9 @@
     </item>
     <item>
       <title>[WIP] CPU, GPU and stuff!</title>
-      <link>https://srishti-git1110.github.io/blog/hardware-primer/</link>
+      <link>http://localhost:1313/blog/hardware-primer/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/hardware-primer/</guid>
+      <guid>http://localhost:1313/blog/hardware-primer/</guid>
       <description>&lt;p&gt;Some beginner stuff!&lt;/p&gt;
 &lt;h2 id=&#34;core-microprocessorprocessor-chip&#34;&gt;Core, Microprocessor/Processor, Chip&lt;/h2&gt;
 &lt;p&gt;&amp;ldquo;A chip&amp;rdquo; is the physical semiconductor chip; it&amp;rsquo;s &amp;ldquo;a physical integrated circuit&amp;rdquo; comprised of transistors, resistors, and capacitors.&lt;/p&gt;
@@ -32,9 +32,9 @@
     </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
-      <link>https://srishti-git1110.github.io/blog/moes/</link>
+      <link>http://localhost:1313/blog/moes/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/moes/</guid>
+      <guid>http://localhost:1313/blog/moes/</guid>
       <description>&lt;p&gt;In this short post, I am going to talk about the Switch Transformer paper.&lt;/p&gt;
 &lt;h2 id=&#34;background-and-architecture&#34;&gt;Background and Architecture&lt;/h2&gt;
 &lt;p&gt;To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.&lt;/p&gt;
@@ -45,16 +45,16 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
     </item>
     <item>
       <title>An Introduction to Differential Privacy</title>
-      <link>https://srishti-git1110.github.io/blog/dp/</link>
+      <link>http://localhost:1313/blog/dp/</link>
       <pubDate>Mon, 25 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/dp/</guid>
+      <guid>http://localhost:1313/blog/dp/</guid>
       <description>A detailed mathematical and intuitive introduction to differential privacy.</description>
     </item>
     <item>
       <title>PyTorch Datasets and Dataloaders</title>
-      <link>https://srishti-git1110.github.io/blog/2023-01-05-pytorch-ds-dl/</link>
+      <link>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</link>
       <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
-      <guid>https://srishti-git1110.github.io/blog/2023-01-05-pytorch-ds-dl/</guid>
+      <guid>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</guid>
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
   </channel>

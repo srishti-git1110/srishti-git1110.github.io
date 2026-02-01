@@ -112,10 +112,10 @@ menu:
       name: blog
       url: /blog/
       weight: 20
-    - identifier: oss
-      name: oss
-      url: /oss/
-      weight: 20
+    # - identifier: oss
+    #   name: oss
+    #   url: /oss/
+    #   weight: 20
     # - identifier: Projects
     #   name: projects
     #   url: /projects/
