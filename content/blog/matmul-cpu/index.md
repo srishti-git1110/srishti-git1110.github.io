@@ -13,14 +13,11 @@ mathjax: true
 This blog starts with a naive implementation of matmul in C and optimizes it one step at a time. 
 
 I am using [the following machine](https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb) with a 10 core CPU (4 Performance cores+6 Efficiency cores). 
- 
-
-Food for thought: Is matrix multiplication on CPU compute bound or memory bound? Think about it...
 
 
 
 ## Algorithmic complexity of Matrix Multiplication: Calculating the FLOPs required
-Matrix multiplication is ubiquitous in many areas of computer sciene. As the matrices grow in sizes, the amount of FLOPs required to calculate the matmul grow cubically[^1]. Let's see how. 
+Matrix multiplication is ubiquitous in many areas of computer sciene. As matrices grow in size, the total FLOPs required to calculate the matmul grow cubically[^1]. Let's see how. 
 
 Consider two matrices $A (i \times k)$ and $B (k \times j)$. The product of $A$ and $B$, $AB$ is a matrix $C$ of shape $(i \times j)$.
 
@@ -32,11 +29,10 @@ This is a total of 2n - 1 floating point operations (FLOPs) required to calculat
 
 $$(2n - 1) n^2 = 2n^3 - n^2$$
 
-As $n$ grows bigger (asymptomatic, if you're feeling fancy), $n^2$ becomes pretty negligible in comparison to $2n^3$ and hence can be ignored so the total FLOPs required is roughly $2n^3$. Therefore, the computational complexity is $O(n^3)$. 
 
-For the purpose of this blog, I am considering two matrix sizes $N=4096$ and $N=8192$ which translates to roughly 137 and 1099 GFLOPs respectively. I initially started with $N=4096$ but because some optimization didn't yield any significant benefit for that size, I also decided to include $N=8192$. Anyway, those numbers seem like a lot of FLOPs, but they're rather pretty small if compared with the peak FLOPs offered by any standard modern processor.  
+Asymptomatically, $n^2$ becomes pretty negligible in comparison to $2n^3$ and hence can be ignored so the total FLOPs required is roughly $2n^3$. Therefore, the computational complexity is $O(n^3)$. 
 
-To benchmark, I calculated the time required to multiply numpy arrays using `np.matmul` and here are the results:
+For this blog, I am considering two matrix sizes $N=4096$ and $N=8192$ which is roughly 137 and 1099 total GFLOPs respectively. To benchmark, I calculate the time required to perform this matmul using numpy arrays of those sizes (`np.matmul`):
 
 | Technique        | 4096 | 8192 |
 | -----------------| ---- | ---- |
@@ -65,7 +61,7 @@ When complied with the `-O3` flag[^2] which is the maximum level with safe optim
 | `Naive implementation` | `203 s`  | `46 min`  | `-`    |
 
 
-The speedup column for all further tables is calculated with respect to the row (optimization technique) just above so it simply gives an idea of the amount of improvement we get with a new intervention as compared to what we had just before it.
+The speedup column for all further tables is calculated with respect to the row (optimization technique) just above so it simply gives an idea of the amount of improvement we get with a new intervention.
 
 Full compilation command below:
 
@@ -73,7 +69,7 @@ Full compilation command below:
 gcc -Wall -O3 sgemm-cpu/matmuls/naive.c -o sgemm-cpu/matmuls/naive
 ```
 
-All the further optimizations use the same flags to compile the code.
+All further optimizations use the same compilation flags.
 
 ### [A minor optimization: Avoiding unnecessary memory accesses](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/naive_register_accumulation.c)
 A very small thing we could do with the naive implementation is avoiding multiple reads and writes of intermediate partial sums from and to the memory/cache, like so:
@@ -244,7 +240,7 @@ After doing a good amount of search over different values of TILE_SIZE, I found 
 ### ijk tiling
 Let's now separately understand the purpose of tiling rest of the two loops - i and j.
 
-<u> Tiling on the j-loop </u>: With k-tiling rather than loading all the rows of $B$ in the cache for each iteration of $i$, we're covering a particular number of rows at a time that fit in the cache. But for these rows, we're still loading all the columns of $B$ (all values of $j$)! In the oversimplified example above, 1 row = 1 cache line but that obviously isn't the case with bigger matrices and hence, it'd further benefit for the cache hit rate to also tile on the $j$ loop. 
+<u> Tiling on the j-loop </u>: With k-tiling, rather than loading all the rows of $B$ in the cache for each iteration of $i$, we're covering a particular number of rows at a time that fit in the cache. But for these rows, we're still loading all the columns of $B$ (all values of $j$)! In the oversimplified example above, 1 row = 1 cache line but that obviously isn't the case with bigger matrices and hence, it'd further benefit for the cache hit rate to also tile on the $j$ loop. 
  
 
 <u> Tiling on the i-loop </u>: Further with both $k$ and $j$ tiled, we'd still be needing all the rows of C (all values of i, but ofc not full rows due to j-tiling) in the cache multiple times for different values of `k_tile` and `j_tile`. And that might again lead to cache misses for certain values of $C$. And hence, it also benefits to tile on the $i$ loop which, combined with $j$ tiling, effectively translates to taking a sub-matrix of C and finishing all the calculations for it (covering all values of k) before proceeding to another sub-matrix. Of course, we cover all the k values in a tiled manner only.
@@ -258,7 +254,7 @@ for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
         for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
             int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
 
-            /* for a certain tile of C (i_tile:iend, j_tile, jend) we now cover all values of k in our already
+            /* for a specific tile of C (i_tile:iend, j_tile:jend) we now cover all values of k in our already
             discussed k-tiled manner */
 
             for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
@@ -291,8 +287,112 @@ With ijk tiling, the results are as follows:
 
 The best tile size for $N=4096$ is 128, 256, 128 for ikj respectively, and for $N=8192$ is 128 for all ikj.
 
+## Register Blocking
+
+```C
+for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+        int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+
+        for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
+            int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+
+            for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
+                int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
+
+                for (int i = i_tile; i < iend; i += IR) {
+                    for (int j = j_tile; j < jend; j += JR) {
+                        float c00 = C[i + 0][j + 0];
+                        float c01 = C[i + 0][j + 1];
+                        float c02 = C[i + 0][j + 2];
+                        float c03 = C[i + 0][j + 3];
+
+                        float c10 = C[i + 1][j + 0];
+                        float c11 = C[i + 1][j + 1];
+                        float c12 = C[i + 1][j + 2];
+                        float c13 = C[i + 1][j + 3];
+
+                        float c20 = C[i + 2][j + 0];
+                        float c21 = C[i + 2][j + 1];
+                        float c22 = C[i + 2][j + 2];
+                        float c23 = C[i + 2][j + 3];
+
+                        float c30 = C[i + 3][j + 0];
+                        float c31 = C[i + 3][j + 1];
+                        float c32 = C[i + 3][j + 2];
+                        float c33 = C[i + 3][j + 3];
+                    
+                        for (int k = k_tile; k < kend; k++) {
+                            c00 += A[i + 0][k] * B[k][j + 0];
+                            c01 += A[i + 0][k] * B[k][j + 1];
+                            c02 += A[i + 0][k] * B[k][j + 2];
+                            c03 += A[i + 0][k] * B[k][j + 3];
+
+                            c10 += A[i + 1][k] * B[k][j + 0];
+                            c11 += A[i + 1][k] * B[k][j + 1];
+                            c12 += A[i + 1][k] * B[k][j + 2];
+                            c13 += A[i + 1][k] * B[k][j + 3];
+
+                            c20 += A[i + 2][k] * B[k][j + 0];
+                            c21 += A[i + 2][k] * B[k][j + 1];
+                            c22 += A[i + 2][k] * B[k][j + 2];
+                            c23 += A[i + 2][k] * B[k][j + 3];
+
+                            c30 += A[i + 3][k] * B[k][j + 0];
+                            c31 += A[i + 3][k] * B[k][j + 1];
+                            c32 += A[i + 3][k] * B[k][j + 2];
+                            c33 += A[i + 3][k] * B[k][j + 3];
+                        }
+                        C[i + 0][j + 0] = c00;
+                        C[i + 0][j + 1] = c01;
+                        C[i + 0][j + 2] = c02;
+                        C[i + 0][j + 3] = c03;
+
+                        C[i + 1][j + 0] = c10;
+                        C[i + 1][j + 1] = c11;
+                        C[i + 1][j + 2] = c12;
+                        C[i + 1][j + 3] = c13;
+
+                        C[i + 2][j + 0] = c20;
+                        C[i + 2][j + 1] = c21;
+                        C[i + 2][j + 2] = c22;
+                        C[i + 2][j + 3] = c23;
+
+                        C[i + 3][j + 0] = c30;
+                        C[i + 3][j + 1] = c31;
+                        C[i + 3][j + 2] = c32;
+                        C[i + 3][j + 3] = c33;
+                }
+            }
+        }
+    }
+}
+```
 
 ## Multithreading
+Until now different cores of the CPU weren't leevraged to be able to do more work in parallel. So the job now is to find ways to divide (parallelize) the computation of C among threads that the OS could then schedule on different cores. By letting one thread handle the comptation of one specific C tile, we could do this in a way that requires no communication among the several threads. Realise that the calculation of these C tiles is independent in that no tile requires access to any other tile for its calculation.
+
+```C
+#pragma omp parallel for collapse(2) num_threads(8) default(none) shared(A, B, C)
+    for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+        int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+        for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
+            int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+            for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
+                int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
+                for (int i = i_tile; i < iend; i++) {
+                    for (int k = k_tile; k < kend; k++) {
+                        float a_ik = A[i][k];
+                        for (int j = j_tile; j < jend; j++) {
+                            C[i][j] += a_ik * B[k][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+```
+
+
 
 | Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
@@ -302,6 +402,9 @@ The best tile size for $N=4096$ is 128, 256, 128 for ikj respectively, and for $
 | `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
 | `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
 | `Multithreading` |  `1.19s` | `9.88s` | `2.6x` | `2.6x` |
+
+
+
 
 [^1]: This is for the standard algorithm. There's other algos like [Strassen's](https://en.wikipedia.org/wiki/Strassen_algorithm) with better theoretical complexity.
 
