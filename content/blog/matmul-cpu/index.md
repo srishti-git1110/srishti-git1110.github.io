@@ -287,7 +287,11 @@ With ijk tiling, the results are as follows:
 
 The best tile size for $N=4096$ is 128, 256, 128 for ikj respectively, and for $N=8192$ is 128 for all ikj.
 
+Also notice that the inner most j loop can be vectorized which becomes another optimization the compiler does by itself (check assembly for this). 
+
 ## Register Blocking
+
+Tiling enables excellent cache hit for all three matrices. But let's focus on C[i][j] - at each new iteration of the $k$ and $k_tile$ loops, $C[i][j]$ needs to be loaded from and stored back to the cache. A better way can be to work out an even smaller tile (micro-tile) of C such that it fits entirely into the registers eliminating the need to do multiple repetitive reads from and writes to the cache. Basically, just how we make the code cache-optimized reducing main memory reads/write, we now aim to do the same thing for registers that are closest to the ALUs. Consequently, this is known as register blocking and a simple implementation of it goes:
 
 ```C
 for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
@@ -367,6 +371,55 @@ for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
     }
 }
 ```
+
+This gives an avg latency of 4.3s for $N=4096$ - worse than the previous tiled version. Why did this happen? Two major reasons: Firstly, we lost the nicley vectorizable inner-most j loop in this version. Second, the cache hit rate for B values becomes v poor. Let's fix both of them:
+
+### SIMD
+In our current register blocking implementation, a lot of scalar calculations inside the k-loop can be performed as vector ops. Specifically, the 4x4 microtile of C can be put into 4 128-bit NEON registers (on apple silicon) each containing one row of C.
+Another register can hold the four contiguous B values B[k][j] through B[k][j+3] and so the 16 scalar FMA instructions now become four 4-wide vector FMA instructions, like so:
+
+```C
+for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+        int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+
+        for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
+            int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+
+            for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
+                int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
+
+                for (int i = i_tile; i < iend; i += IR) {
+                    for (int j = j_tile; j < jend; j += JR) {
+
+                        float32x4_t c0 = vld1q_f32(&C[i+0][j]);
+                        float32x4_t c1 = vld1q_f32(&C[i+1][j]);
+                        float32x4_t c2 = vld1q_f32(&C[i+2][j]);
+                        float32x4_t c3 = vld1q_f32(&C[i+3][j]);
+
+                        for (int k = k_tile; k < kend; k++) {
+                            float32x4_t b = vld1q_f32(&B[k][j]);
+
+                            c0 = vfmaq_n_f32(c0, b, A[i+0][k]);
+                            c1 = vfmaq_n_f32(c1, b, A[i+1][k]);
+                            c2 = vfmaq_n_f32(c2, b, A[i+2][k]);
+                            c3 = vfmaq_n_f32(c3, b, A[i+3][k]);
+                        }
+
+                        vst1q_f32(&C[i+0][j], c0);
+                        vst1q_f32(&C[i+1][j], c1);
+                        vst1q_f32(&C[i+2][j], c2);
+                        vst1q_f32(&C[i+3][j], c3);
+                    }
+                }
+            }
+        }
+    }
+```
+
+(Note this isn't SIMD vectorizing the k-loop, like how the compiler did for j-loop in ijk-tiled version, but rather the instructions inside one iteration of it.)
+
+
+### Packing
 
 ## Multithreading
 Until now different cores of the CPU weren't leevraged to be able to do more work in parallel. So the job now is to find ways to divide (parallelize) the computation of C among threads that the OS could then schedule on different cores. By letting one thread handle the comptation of one specific C tile, we could do this in a way that requires no communication among the several threads. Realise that the calculation of these C tiles is independent in that no tile requires access to any other tile for its calculation.
