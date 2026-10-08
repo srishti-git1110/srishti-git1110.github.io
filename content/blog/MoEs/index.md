@@ -1,7 +1,8 @@
 ---
 title: Switch Transformer - Sparse Routed Networks/MoEs
 layout: post
-date: 2024-06-17
+# date: 2024-06-17
+weight: 2
 tags:
     - NLP, PyTorch
 description:

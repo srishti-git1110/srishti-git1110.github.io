@@ -1,7 +1,8 @@
 ---
 title: "[WIP] Optimizing matmul on CPU"
 layout: post
-date: 2025-12-20
+# date: 2025-12-20
+weight: 1
 tags:
     - Optimization, Parallel Processing
 description: ""
