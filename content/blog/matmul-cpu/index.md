@@ -1,5 +1,5 @@
 ---
-title: "[WIP] Optimizing matmul on CPU"
+title: "Optimizing matmul on CPU"
 layout: post
 # date: 2025-12-20
 weight: 1
@@ -13,7 +13,7 @@ mathjax: true
 ## Introduction and Setup
 This blog starts with a naive implementation of matmul in C and optimizes it one step at a time. 
 
-I am using [the following machine](https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb) with a 10 core CPU (4 Performance cores+6 Efficiency cores). 
+Benchmarking is done on [the following machine](https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb) with a 10 core CPU (4 Performance cores+6 Efficiency cores). 
 
 
 
@@ -72,8 +72,8 @@ gcc -Wall -O3 sgemm-cpu/matmuls/naive.c -o sgemm-cpu/matmuls/naive
 
 All further optimizations use the same compilation flags.
 
-### [A minor optimization: Avoiding unnecessary memory accesses](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/naive_register_accumulation.c)
-A very small thing we could do with the naive implementation is avoiding multiple reads and writes of intermediate partial sums from and to the memory/cache, like so:
+### [Minor optimization: Avoiding unnecessary memory accesses](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/naive_register_accumulation.c)
+A minor optimization to the naive implementation is avoiding multiple reads and writes of intermediate partial sums from and to the memory/cache, like so:
 
 ```C
 for (int i = 0; i < N; i++) {
@@ -86,7 +86,7 @@ for (int i = 0; i < N; i++) {
     }
 }
 ```
-The table below shows that helps very little for $N=4096$ but quite a lot for $N=8192$ [^3]:
+That helps very little for $N=4096$ but quite a lot for $N=8192$ [^3]:
 
 | Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
@@ -94,13 +94,13 @@ The table below shows that helps very little for $N=4096$ but quite a lot for $N
 | `Naive implementation` | `203s`  | `46min`  | `-`    | `-`    |
 | `Naive w register accumulation` | `199s` | `27min` | `1.02x` | `1.7x` |
 
-This optimization is simply causing the compiler to keep the partial sum in the registers only and write back to the memory only once when the full sum is done. Meaning in this case the compiler isn't issuing separate instructions to store the partial sum back to the memory after every loop iteration and to load it back on the next iteration; and that reduces some latency [^4]. 
+This optimization simply causes the compiler to keep the partial sum in the registers only and write back to the memory only once when the full sum is done. Meaning in this case the compiler doesn't issue separate instructions to store the partial sum back to the memory after every loop iteration and to load it back on the next iteration; and that reduces some latency [^4]. 
 
 
 ## [Loop reordering](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/cache_aware.c)
 The naive implementation follows the most natural mathy way to calculate a matmul $C = AB$ --- element $C[0][0]$ is *fully* calculated first via a scalar product of the first row of $A$ with the first column of $B$, element $C[0][1]$ is *fully* calculated next via the scalar product of the first row of $A$ with the second column of $B$, and so on. 
 
-There are two key insights over here:
+There are two key points here:
 1. Languages like C store matrices in the memory in a row major format like this:
 
 ![row major order](row-major.jpeg)
@@ -129,7 +129,7 @@ What about the subsequent iterations for different values of j and i? Say $i=0, 
 
 <!-- Hence, for the access pattern shown above, we're getting good cache hit rates for values of A and C but a very high miss rate for values of B -- at each loop iteration, we have a hit for $C[0][0]$, mostly hits for value of the first row of A but we have a cache miss for all the values of B involved ($B[0][0], B[1][0]...$). Simply because the cache line loads contigous values from the memory and owing to the row major storage in the memory, the different values of B involved in calculating $C[0][0]$ are 4096 values (4096x4 bytes) apart which well exceeds the size of a usual cache line.  -->
 
-2. The second insight is not too difficult to understand -- if we just change the loop orders (eg. $jik$ or $jki$ etc. instead of the most natural  $ijk$), we'll still get the correct matmul. It's also why I was italicizing *fully* above. Thing is that with different loop orders we're not fully calculating each element of C in one full iteration of the innermost loop but that doesn't hurt the correctness of the matmul and that's easy to realise. Alright. Given that, we note that some loop orders have a better overall cache hit rate as compared to the naive $ijk$ order (btw some orders also have a worse rate than $ijk$!). And hence just by changing the orders, we'll be able to reduce the latency by not having to make as many high latency accesses to the memory. Experimenting w different orders, the lowest latency corresponds to order ikj as follows:
+2. The second insight is not too difficult to understand -- changing the loop orders (eg. $jik$ or $jki$ etc. instead of the most natural  $ijk$) still gives the correct matmul. Given that, realise that some loop orders have a better overall cache hit rate as compared to the naive $ijk$ order (btw some orders also have a worse rate than $ijk$!). And hence just by changing the orders, we'll be able to reduce the latency by not having to make as many high latency accesses to the memory. Experimenting w different orders, the lowest latency corresponds to order ikj as follows:
 
 | Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
 |------------------------|----------|-----------|---------|---------|
@@ -147,29 +147,22 @@ for (int i = 0; i < N; i++) {
         }
     }
 }
-```
+``` 
 
-### What was the bottleneck?
-A simple loop reordering of our naive implementation provided a 45 fold improvement. That's a lot for such a simple change. What does this tell us? Obviously, we still performed total 137 GFLOPs so that part didn't change. Turns out, in the naive implementation our bottleneck was the memory bandwidth. Meaning the CPU execution units (ALUs) were bottlenecked by the latency of data transfer between the memory and the CPU, implying we were overall *memory bound in the naive implementation*. Of course, we cannot change the memory bandwidth towards a faster memory. So what did we do? We simply wrote the code such that it allows for better cache reuse in subsequent loop iters!
-
-### What about the computation aspect?
-// vectorization enabled by loop ordering - figured out by the compiler
-
-### What about the minor optimization from [above](https://srishti-git1110.github.io/blog/matmul-cpu/#a-minor-optimization-avoiding-unnecessary-memory-accesses)?
-Because with the reordered loops, we're not calculating the full result $C[i][j]$ in one iteration of the inner most loop, we can't avoid the loading and storing of partial sums anymore!
+### Auto-vectorization
+Apart from a better cache hit rate, the above implementation also allows the compiler to auto-vectorize different iters of the inner-most j-loop using SIMD instructions. This follows the fact that different iterations of the j-loop are completely independent of each other.
 
 ## Cache Blocking / Tiling
-The long story short about tiling: it's all about enabling a better cache reuse. Nothing different from the goal of loop reordering.
+The long story short about tiling is the same as loop reordering: it's all about enabling a better cache reuse.
 
-
-Let's try to understand tiling by doing something boring. For our best loop order $ikj$, we start by looking at the values that are accessed by the inner $k, j$ loops for different values of $i$.
+Let's try to understand tiling by doing something boring. For the best loop order $ikj$, we start by looking at the values that are accessed by the inner $k, j$ loops for different values of $i$.
 
 $(i=0, k=0-4095, j=0-4095)$
 
 - $A[0][0], A[0][1], ... A[0][4095]$ --> A's 1st row
 - $C[0][0], C[0][1], ... C[0][4095]$ --> C's 1st row
 - $B[0][0], B[0][1], ... B[0][4095]$ --> B's 1st row
-- $B[1][0], B[1][1], ... B[1][4095]$ --> B's 2nd row
+<!-- - $B[1][0], B[1][1], ... B[1][4095]$ --> B's 2nd row -->
 ...                                 
 - $B[4095][0], B[4095][1], ... B[4095][4095]$ --> B's 4095th row
 
@@ -179,7 +172,7 @@ $(i=1, k=0-4095, j=0-4095)$
 - $A[1][0], A[1][1], ... A[1][4095]$ --> A's 2nd row
 - $C[1][0], C[1][1], ... C[1][4095]$ --> C's 2nd row
 - $B[0][0], B[0][1], ... B[0][4095]$ --> B's 1st row
-- $B[1][0], B[1][1], ... B[1][4095]$ --> B's 2nd row
+<!-- - $B[1][0], B[1][1], ... B[1][4095]$ --> B's 2nd row -->
 
 ...                                 
 
@@ -204,12 +197,12 @@ The figure below shows the program resumed from $k=3$. Also shown is the cache s
 
 
 
-Now what? Start $i=1$. The same story gets repeated and below are the various cache states showing how we need to load the *entire B matrix from the memory* to be able to finish $i=1$! Not even a single row found in cache when needed despite the fact that all of them were loaded in the previous iteration $i=0$.
+Now what? Start $i=1$. The same story gets repeated and below are the various cache states; clearly the *entire B matrix* needs to be fetched from the memory to be able to finish $i=1$! Not even a single row found in cache when needed despite the fact that all of them were loaded in the previous iteration $i=0$.
 
 ![i=1](cache_i1.jpeg)
 
 
-Of course, this was true for our particular example that 1 cache line = 1 row, and no single row of B was found in the cache. In practice, the number of caches, their sizes, eviction policies, cache line sizes all matter in determining what rows/values are found but the general gist stated below remains the same. 
+This was a toy example where 1 cache line = 1 row, and no single row of B was found in the cache. In practice, the number of caches, their sizes, eviction policies, cache line sizes, associativity all matter in determining what rows/values are found but the general gist stated below remains the same. 
 
 <!-- The gist is that by the time the control proceeds to a new value of i and tries to access certain values from B, they might already be evicted from the cache requiring them to be loaded them from the high latency DRAM. Further, to be able to store the newly loaded values in the cache, cache eviction will happen for certaiin other values of B that already exist from the previous i iteration -- and these values will again need to be loaded from the memory. -->
 
@@ -244,7 +237,7 @@ Let's now separately understand the purpose of tiling rest of the two loops - i 
 <u> Tiling on the j-loop </u>: With k-tiling, rather than loading all the rows of $B$ in the cache for each iteration of $i$, we're covering a particular number of rows at a time that fit in the cache. But for these rows, we're still loading all the columns of $B$ (all values of $j$)! In the oversimplified example above, 1 row = 1 cache line but that obviously isn't the case with bigger matrices and hence, it'd further benefit for the cache hit rate to also tile on the $j$ loop. 
  
 
-<u> Tiling on the i-loop </u>: Further with both $k$ and $j$ tiled, we'd still be needing all the rows of C (all values of i, but ofc not full rows due to j-tiling) in the cache multiple times for different values of `k_tile` and `j_tile`. And that might again lead to cache misses for certain values of $C$. And hence, it also benefits to tile on the $i$ loop which, combined with $j$ tiling, effectively translates to taking a sub-matrix of C and finishing all the calculations for it (covering all values of k) before proceeding to another sub-matrix. Of course, we cover all the k values in a tiled manner only.
+<u> Tiling on the i-loop </u>: Further with both $k$ and $j$ tiled, we'd still be needing all the rows of C (all values of i, but ofc not full rows due to j-tiling) in the cache multiple times for different values of `k_tile` and `j_tile`. And that might again lead to cache misses for certain values of $C$. And hence, it also benefits to tile on the $i$ loop which, combined with $j$ tiling, effectively translates to taking a sub-matrix of C and finishing all the calculations for it (covering all values of k) before proceeding to another sub-matrix.
 
 In code, this looks like:
 
@@ -286,9 +279,9 @@ With ijk tiling, the results are as follows:
 | `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
 | `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
 
-The best tile size for $N=4096$ is 128, 256, 128 for ikj respectively, and for $N=8192$ is 128 for all ikj.
+The best tile sizes for $N=4096$ is 128, 256, 128 for ikj respectively, and for $N=8192$ is 128 for all ikj.
 
-Also notice that the inner most j loop can be vectorized which becomes another optimization the compiler does by itself (check assembly for this). 
+Also note that the inner most j-loop can be vectorized - another optimization the compiler does by itself (check assembly). 
 
 ## Register Blocking
 
@@ -373,10 +366,10 @@ for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
 }
 ```
 
-This gives an avg latency of 4.3s for $N=4096$ - worse than the previous tiled version. Why did this happen? Two major reasons: Firstly, we lost the nicley vectorizable inner-most j loop in this version. Second, the cache hit rate for B values becomes v poor. Let's fix both of them:
+This gives an avg latency of 4.3s for $N=4096$ - worse than the previous tiled version. Why did this happen? Two major reasons: First, we lost the nicley vectorizable inner-most j loop in this version. Second, the cache hit-rate for B values becomes v poor. Let's fix both of them:
 
 ### SIMD
-In our current register blocking implementation, a lot of scalar calculations inside the k-loop can be performed as vector ops. Specifically, the 4x4 microtile of C can be put into 4 128-bit NEON registers (on apple silicon) each containing one row of C.
+In the current implementation, a lot of scalar calculations inside the k-loop can be performed as vector ops. Specifically, the 4x4 microtile of C can be put into 4 128-bit NEON registers (on apple silicon) each containing one row of C (4floats=128bit).
 Another register can hold the four contiguous B values B[k][j] through B[k][j+3] and so the 16 scalar FMA instructions now become four 4-wide vector FMA instructions, like so:
 
 ```C
@@ -421,30 +414,81 @@ for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
 
 
 ### Packing
+To fix the poor cache hit rate, a simple solution is to arrange values of A and B in the pattern they're accessed in the inner loops (the microkernel as it's called) - this is called packing and while it introduces some extra read/write costs, the computation benefits vastly from improved data reuse.
 
-## Multithreading
-Until now different cores of the CPU weren't leevraged to be able to do more work in parallel. So the job now is to find ways to divide (parallelize) the computation of C among threads that the OS could then schedule on different cores. By letting one thread handle the comptation of one specific C tile, we could do this in a way that requires no communication among the several threads. Realise that the calculation of these C tiles is independent in that no tile requires access to any other tile for its calculation.
+One implementation can look like:
 
 ```C
-#pragma omp parallel for collapse(2) num_threads(8) default(none) shared(A, B, C)
-    for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
         int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+
         for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
             int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+
             for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
                 int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
-                for (int i = i_tile; i < iend; i++) {
+
+                // pack A:
+                int a_pos = 0;
+                for (int i = i_tile; i < iend; i += IR) {
                     for (int k = k_tile; k < kend; k++) {
-                        float a_ik = A[i][k];
-                        for (int j = j_tile; j < jend; j++) {
-                            C[i][j] += a_ik * B[k][j];
-                        }
+                        A_pack[a_pos++] = A[i + 0][k];
+                        A_pack[a_pos++] = A[i + 1][k];
+                        A_pack[a_pos++] = A[i + 2][k];
+                        A_pack[a_pos++] = A[i + 3][k];
                     }
+                }
+
+                // pack B
+                int b_pos = 0;
+                for (int j = j_tile; j < jend; j += JR) {
+                    for (int k = k_tile; k < kend; k++) {
+                        B_pack[b_pos++] = B[k][j + 0];
+                        B_pack[b_pos++] = B[k][j + 1];
+                        B_pack[b_pos++] = B[k][j + 2];
+                        B_pack[b_pos++] = B[k][j + 3];
+                    }
+                }
+
+                int a_micro_start = 0;
+                for (int i = i_tile; i < iend; i += IR) {
+                    int b_micro_start = 0;
+                    for (int j = j_tile; j < jend; j += JR) {
+                        float32x4_t c0 = vld1q_f32(&C[i+0][j]);
+                        float32x4_t c1 = vld1q_f32(&C[i+1][j]);
+                        float32x4_t c2 = vld1q_f32(&C[i+2][j]);
+                        float32x4_t c3 = vld1q_f32(&C[i+3][j]);
+
+                        float *a_ptr = &A_pack[a_micro_start];
+                        float *b_ptr = &B_pack[b_micro_start];
+
+                        for (int k = k_tile; k < kend; k++) {
+
+                            float32x4_t a = vld1q_f32(a_ptr);
+                            float32x4_t b = vld1q_f32(b_ptr);
+
+                            c0 = vfmaq_n_f32(c0, b, vgetq_lane_f32(a, 0));
+                            c1 = vfmaq_n_f32(c1,b, vgetq_lane_f32(a, 1));
+                            c2 = vfmaq_n_f32(c2, b, vgetq_lane_f32(a, 2));
+                            c3 = vfmaq_n_f32(c3, b, vgetq_lane_f32(a, 3));
+
+                            a_ptr += IR;
+                            b_ptr += JR;
+                        }
+                        vst1q_f32(&C[i+0][j], c0);
+                        vst1q_f32(&C[i+1][j], c1);
+                        vst1q_f32(&C[i+2][j], c2);
+                        vst1q_f32(&C[i+3][j], c3);
+
+                        b_micro_start += (kend - k_tile) * JR;
+                    }
+                    a_micro_start += (kend - k_tile) * IR;
                 }
             }
         }
     }
 ```
+
 
 
 
@@ -454,9 +498,123 @@ Until now different cores of the CPU weren't leevraged to be able to do more wor
 | `Naive implementation ` | `203s`  | `46min`  | `-`    | `-`    |
 | `Naive w register accumulation` | `199s` | `27min` | `1.02x` | `1.7x` |
 | `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
-| `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
-| `Multithreading` |  `1.19s` | `9.88s` | `2.6x` | `2.6x` |
+| `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36x` | `1.3x` |
+| `register blocking w/ packing (best tile sizes)` | `2.12` | `16.8` | `1.5x` | `1.55x` |
 
+Best tile sizes for this implementation:
+
+| Dimension               | $N = 4096$     | $N = 8192$      |
+|------------------------|----------|-----------|
+| TILE_I | 128 | 128 |
+| TILE_J | 128 | 128 |
+| TILE_K | 32 | 32 |
+
+{{< collapse summary="Why is a smaller TILE_K optimal?" >}}
+Compared to ijk-tiling, this implementation does worse for larger values of TILE_K. Here's how to reason about it:
+1. Packing B: (see [this](https://github.com/srishti-git1110/SGEMM-cpu/blob/main/sgemm-cpu/matmuls/tiled_register_blocking_packing.c#L57)) With a larger TILE_K, many rows of B are touched before returning to earlier rows to fetch their different columns. This may cause eviction of earlier rows from the cache requiring an expensive mempry fetch on the next iteration of j.
+
+2. The same cache eviction possibility holds for A and B values - see how every next iter of the j loop comes back to the same A values the previous iter started with, and the same thing holds for B values for every next iter of i.
+
+Ofcourse, these reasons aren't comprehensive.
+{{< /collapse >}}
+
+
+
+
+
+## Multithreading
+Until now, the implementations leveraged a single CPU cores. To make use of multiple available cores, the job now is to find ways to divide (parallelize) the computation of C among threads that the OS could then schedule on different cores. This can be done by letting one thread handle the comptation of one specific C tile (realise that the calculation of different C tiles is independent). 
+
+```C
+#pragma omp parallel for collapse(2) num_threads(8) default(none) shared(A, B, C, A_pack, B_pack)
+    for (int i_tile = 0; i_tile < N; i_tile += TILE_I) {
+        int iend = (i_tile + TILE_I < N) ? i_tile + TILE_I : N;
+
+        for (int j_tile = 0; j_tile < N; j_tile += TILE_J) {
+            int jend = (j_tile + TILE_J < N) ? j_tile + TILE_J : N;
+
+            for (int k_tile = 0; k_tile < N; k_tile += TILE_K) {
+                int kend = (k_tile + TILE_K < N) ? k_tile + TILE_K : N;
+
+                // pack A: 
+                int a_pos = 0;
+                for (int i = i_tile; i < iend; i += IR) {
+                    for (int k = k_tile; k < kend; k++) {
+                        A_pack[a_pos++] = A[i + 0][k];
+                        A_pack[a_pos++] = A[i + 1][k];
+                        A_pack[a_pos++] = A[i + 2][k];
+                        A_pack[a_pos++] = A[i + 3][k];
+                    }
+                }
+
+                // pack B
+                int b_pos = 0;
+                for (int j = j_tile; j < jend; j += JR) {
+                    for (int k = k_tile; k < kend; k++) {
+                        B_pack[b_pos++] = B[k][j + 0];
+                        B_pack[b_pos++] = B[k][j + 1];
+                        B_pack[b_pos++] = B[k][j + 2];
+                        B_pack[b_pos++] = B[k][j + 3];
+                    }
+                }
+
+                int a_micro_start = 0;
+                for (int i = i_tile; i < iend; i += IR) {
+                    int b_micro_start = 0;
+                    for (int j = j_tile; j < jend; j += JR) {
+                        float32x4_t c0 = vld1q_f32(&C[i+0][j]);
+                        float32x4_t c1 = vld1q_f32(&C[i+1][j]);
+                        float32x4_t c2 = vld1q_f32(&C[i+2][j]);
+                        float32x4_t c3 = vld1q_f32(&C[i+3][j]);
+
+                        float *a_ptr = &A_pack[a_micro_start];
+                        float *b_ptr = &B_pack[b_micro_start];
+
+                        for (int k = k_tile; k < kend; k++) {
+
+                            float32x4_t a = vld1q_f32(a_ptr);
+                            float32x4_t b = vld1q_f32(b_ptr);
+
+                            c0 = vfmaq_n_f32(c0, b, vgetq_lane_f32(a, 0));
+                            c1 = vfmaq_n_f32(c1,b, vgetq_lane_f32(a, 1));
+                            c2 = vfmaq_n_f32(c2, b, vgetq_lane_f32(a, 2));
+                            c3 = vfmaq_n_f32(c3, b, vgetq_lane_f32(a, 3));
+
+                            a_ptr += IR;
+                            b_ptr += JR;
+                        }
+                        vst1q_f32(&C[i+0][j], c0);
+                        vst1q_f32(&C[i+1][j], c1);
+                        vst1q_f32(&C[i+2][j], c2);
+                        vst1q_f32(&C[i+3][j], c3);
+
+                        b_micro_start += (kend - k_tile) * JR;
+                    }
+                    a_micro_start += (kend - k_tile) * IR;
+                }
+            }
+        }
+    }
+```
+This parallelization strategy also doesn't require any communication among the several threads.
+
+Best tile sizes:
+
+| Dimension               | $N = 4096$     | $N = 8192$      |
+|------------------------|----------|-----------|
+| TILE_I | 256 | 256 |
+| TILE_J | 256 | 256 |
+| TILE_K | 128 | 128 |
+
+| Technique               | 4096     | 8192      | Speedup ($N=4096$) | Speedup ($N=8192$) |
+|------------------------|----------|-----------|---------|---------|
+| `Baseline (np)`        | `0.10s` | `0.74s`  | `–`     | `–`     |
+| `Naive implementation ` | `203s`  | `46min`  | `-`    | `-`    |
+| `Naive w register accumulation` | `199s` | `27min` | `1.02x` | `1.7x` |
+| `Loop reordering (ikj)` | `4.31s` | `34.28s` | `46x` | `47x` |
+| `ijk tiling (best tile sizes)` | `3.16s` | `26.20s` | `1.36` | `1.3x` |
+| `register blocking w/ packing (best tile sizes)` | `2.12` | `16.8` | `1.5x` | `1.55x` |
+| `Multithreading` |  `0.55s` | `4.2s` | `3.85x` | `4x` |
 
 
 
