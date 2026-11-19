@@ -78,8 +78,8 @@ params:
       url: "https://github.com/srishti-git1110"
 
   analytics:
-    # google:
-    #   SiteVerificationTag: "G-W6HV8VE5SV"
+    google:
+      SiteVerificationTag: "VFrW4kPwpSY84J6ePMFFjzdv8jH9Z8lXQtEGFMfr67k"
     # bing:
     #   SiteVerificationTag: "XYZabc"
     # yandex:

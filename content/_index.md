@@ -2,9 +2,10 @@
 title: Home
 ---
 ### About
-ML Researcher with an academic background in Statistics and Mathematics. Currently researching evaluation-awareness and kinds of metagaming in language models, and how Inoculation prompting shapes learning.
+ML Researcher with an academic background in Statistics and Mathematics. 
+ 
 
-Other things I'm thinking about:
+Things I'm thinking about:
 - **Unverbalized evaluation awareness in language models:** What techniques reliably catch unverbalized eval-awareness? IMO, it's one of the biggest open challenges in relying on alignment evals.
 
     - *More broadly, my hypothesis is that CoT is going to be less and less helpful for any kind of monitoring as capabilities increase, eg. a spike in Astra's no CoT capabilities, CoT obfuscation (situational awareness can make this worse).*

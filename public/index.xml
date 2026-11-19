@@ -2,27 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Home on Srishti Gureja</title>
-    <link>http://localhost:1313/</link>
+    <link>https://srishti-git1110.github.io/</link>
     <description>Recent content in Home on Srishti Gureja</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://srishti-git1110.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Optimizing matmul on CPU</title>
-      <link>http://localhost:1313/blog/matmul-cpu/</link>
+      <link>https://srishti-git1110.github.io/blog/matmul-cpu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/matmul-cpu/</guid>
+      <guid>https://srishti-git1110.github.io/blog/matmul-cpu/</guid>
       <description>&lt;h2 id=&#34;introduction-and-setup&#34;&gt;Introduction and Setup&lt;/h2&gt;
 &lt;p&gt;This blog starts with a naive implementation of matmul in C and optimizes it one step at a time.&lt;/p&gt;
 &lt;p&gt;Benchmarking is done on &lt;a href=&#34;https://www.apple.com/in/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-chip-with-10-core-cpu-and-10-core-gpu-16gb-memory-512gb&#34;&gt;the following machine&lt;/a&gt; with a 10 core CPU (4 Performance cores+6 Efficiency cores).&lt;/p&gt;
+&lt;p&gt;Peak FLOPs of this machine&lt;/p&gt;
 &lt;h2 id=&#34;algorithmic-complexity-of-matrix-multiplication-calculating-the-flops-required&#34;&gt;Algorithmic complexity of Matrix Multiplication: Calculating the FLOPs required&lt;/h2&gt;
-&lt;p&gt;Matrix multiplication is ubiquitous in many areas of computer sciene. As matrices grow in size, the total FLOPs required to calculate the matmul grow cubically&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Let&amp;rsquo;s see how.&lt;/p&gt;</description>
+&lt;p&gt;Matrix multiplication is ubiquitous in many areas of computer sciene. As matrices grow in size, the total FLOPs required to calculate the matmul grow cubically&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Here&amp;rsquo;s how.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Switch Transformer - Sparse Routed Networks/MoEs</title>
-      <link>http://localhost:1313/blog/moes/</link>
+      <link>https://srishti-git1110.github.io/blog/moes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/moes/</guid>
+      <guid>https://srishti-git1110.github.io/blog/moes/</guid>
       <description>&lt;p&gt;In this short post, I am going to talk about the Switch Transformer paper.&lt;/p&gt;
 &lt;h2 id=&#34;background-and-architecture&#34;&gt;Background and Architecture&lt;/h2&gt;
 &lt;p&gt;To begin: In Dense Models, each parameter/neuron of the network gets activated during the forward pass.&lt;/p&gt;
@@ -33,16 +35,16 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
     </item>
     <item>
       <title>An Introduction to Differential Privacy</title>
-      <link>http://localhost:1313/blog/dp/</link>
+      <link>https://srishti-git1110.github.io/blog/dp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/dp/</guid>
+      <guid>https://srishti-git1110.github.io/blog/dp/</guid>
       <description>A detailed mathematical and intuitive introduction to differential privacy.</description>
     </item>
     <item>
       <title>Open Source!</title>
-      <link>http://localhost:1313/oss/</link>
+      <link>https://srishti-git1110.github.io/oss/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/oss/</guid>
+      <guid>https://srishti-git1110.github.io/oss/</guid>
       <description>&lt;p&gt;Open source contributions!&lt;/p&gt;
 &lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
     &lt;a href=&#34;https://github.com/NousResearch/atropos/pull/331&#34;&gt;atropos: An RL agent to play Universal paperclips&lt;/a&gt;.&lt;br&gt;
@@ -168,9 +170,9 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
     </item>
     <item>
       <title>Projects</title>
-      <link>http://localhost:1313/code/</link>
+      <link>https://srishti-git1110.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/code/</guid>
+      <guid>https://srishti-git1110.github.io/code/</guid>
       <description>&lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
     &lt;a href=&#34;https://github.com/srishti-git1110/torch-widenet&#34;&gt;WideNet&lt;/a&gt;.&lt;br&gt;
     &lt;div style=&#34;line-height: 1.4; font-size: smaller; color: var(--secondary);&#34;&gt;
@@ -216,16 +218,16 @@ And tangential to this, work by &lt;a href=&#34;https://arxiv.org/abs/2001.08361
     </item>
     <item>
       <title>PyTorch Datasets and Dataloaders</title>
-      <link>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</link>
+      <link>https://srishti-git1110.github.io/blog/2023-01-05-pytorch-ds-dl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/2023-01-05-pytorch-ds-dl/</guid>
+      <guid>https://srishti-git1110.github.io/blog/2023-01-05-pytorch-ds-dl/</guid>
       <description>A beginner&amp;#39;s guide to understanding two important PyTorch classes - Dataset and Dataloader. The new DataPipe functionality is also explored.</description>
     </item>
     <item>
       <title>Talks</title>
-      <link>http://localhost:1313/talks/</link>
+      <link>https://srishti-git1110.github.io/talks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/talks/</guid>
+      <guid>https://srishti-git1110.github.io/talks/</guid>
       <description>&lt;p&gt;Some paper discussions!&lt;/p&gt;
 &lt;h3 id=&#34;ml-efficiency&#34;&gt;ML Efficiency&lt;/h3&gt;
 &lt;div style=&#34;margin-bottom: 1em;&#34;&gt;
